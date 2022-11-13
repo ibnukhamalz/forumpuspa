@@ -69,7 +69,7 @@ class Login extends CI_Controller
     public function register($crypt = null)
     {
 
-        $this->form_validation->set_rules('nama_lengkap', 'nama_lengkap', 'required', array('required' => "*Harus diisi"));
+        $this->form_validation->set_rules('nama_singkat', 'nama_singkat', 'required', array('required' => "*Harus diisi"));
         $this->form_validation->set_rules('email', 'email', 'required', array('required' => "*Harus diisi"));
         $this->form_validation->set_rules('password', 'password', 'required', array('required' => "*Harus diisi"));
 
@@ -101,7 +101,14 @@ class Login extends CI_Controller
         $data['qinduk'] = $this->manggota->getDataInduk(["jenis_mitra" => $qForum->id, "id_parent" => 0]);
         $data['qlevel'] = $this->menum->getData("forum");
         $data['qprovinsi'] = json_decode($this->api->daerah("provinces"));
-
+        // echo "<pre>";
+        // print_r($encrypt);
+        // print_r($data);
+        // die();
+        // provinces
+        // province
+        // regencies
+        // regency
         $data['encrypt'] = $crypt;
         $this->load->view('register', $data);
     }
@@ -112,7 +119,7 @@ class Login extends CI_Controller
         $email          = $this->input->post('email');
         $password       = $this->input->post('password');
         $token          = $this->input->post('token');
-        $nama_lengkap   = ucwords(strtolower($this->input->post('nama_lengkap')));
+        $nama_singkat   = $this->input->post('nama_singkat');
         $kode_wilayah   = $this->input->post('kode_wilayah');
 
         $encrypt = explode("-", base64_decode($this->input->post('encrypt')));
@@ -155,7 +162,7 @@ class Login extends CI_Controller
 
         $inputmitra = array(
             "id_parent" => $id_parent,
-            "nama_lengkap" => $nama_lengkap,
+            "nama_singkat" => $nama_singkat,
             "kode_wilayah" => $kode_wilayah,
             "jenis_mitra" => $jenis_mitra
         );

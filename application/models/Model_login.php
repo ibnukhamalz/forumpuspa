@@ -15,7 +15,6 @@ class Model_login extends CI_Model
                         "roles.user_id,
                         b.keterangan as role_id,
                         users.email,
-                        users.verifikasi_akun,
                         roles.mitra_id,
                         mitra.nama_lengkap,
                         a.value as jenis_mitra"

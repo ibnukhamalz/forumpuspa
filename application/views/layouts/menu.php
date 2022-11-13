@@ -23,20 +23,15 @@
 					<?php if ($this->session->role_id == 0) : ?>
 						<li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="database"></i><span>Data Master</span></a>
 							<ul class="sidebar-submenu">
-								<li><a href="<?= base_url('master/index/jenis_entitas') ?>">Jenis Entitas</a></li>
-								<li><a href="<?= base_url('master/index/jenis_kegiatan') ?>">Jenis Kegiatan</a></li>
-								<li><a href="<?= base_url('master/index/tahapan') ?>">Tahapan</a></li>
-								<li><a href="<?= base_url('master/index/tujuan_kegiatan') ?>">Tujuan Kegiatan</a></li>
-								<li><a href="<?= base_url('master/index/sasaran_kegiatan') ?>">Sasaran Kegiatan</a></li>
+								<li><a href="<?= base_url('master/user') ?>">User</a></li>
+								<li><a href="<?= base_url('master/mitra') ?>">Mitra</a></li>
 							</ul>
 						</li>
 					<?php endif; ?>
 					<?php if ($this->session->role_id != 2) : ?>
 						<li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="<?= base_url('anggota') ?>"><i data-feather="users"></i><span>Anggota Forum</span></a></li>
 					<?php endif; ?>
-					<?php if ($this->mview->ver_akun($this->session->user_id) == 'on' or $this->session->role_id != 2) : ?>
-						<li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="<?= base_url('kegiatan') ?>"><i data-feather="check-square"></i><span>Kegiatan</span></a></li>
-					<?php endif; ?>
+					<li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="<?= base_url('kegiatan') ?>"><i data-feather="check-square"></i><span>Kegiatan</span></a></li>
 				</ul>
 			</div>
 		</nav>

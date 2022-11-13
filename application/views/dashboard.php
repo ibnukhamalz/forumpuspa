@@ -5,19 +5,13 @@
         <div class="card profile-greeting">
           <div class="card-body py-3">
             <div class="project-status mt-0 pt-0">
-              <?php
-              if ($this->session->ver_akun == "off") {
-                echo "<h5>Menunggu Verifikasi Admin</h5>";
-              } else {
-              ?>
-                <div class="media mb-0">
-                  <p><?= $kelengkapan ?> % </p>
-                  <div class="media-body text-end"><span>Kelengkapan Profile</span></div>
-                </div>
-                <div class="progress" style="height: 5px">
-                  <div class="progress-bar-animated bg-primary progress-bar-striped" role="progressbar" style="width: <?= $kelengkapan ?>%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              <?php } ?>
+              <div class="media mb-0">
+                <p><?= $kelengkapan ?> % </p>
+                <div class="media-body text-end"><span>Kelengkapan Profile</span></div>
+              </div>
+              <div class="progress" style="height: 5px">
+                <div class="progress-bar-animated bg-primary progress-bar-striped" role="progressbar" style="width: <?= $kelengkapan ?>%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
             </div>
           </div>
         </div>

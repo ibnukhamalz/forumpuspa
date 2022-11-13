@@ -11,4 +11,15 @@ class Model_view extends CI_Model
 
         return $logo;
     }
+
+    public function ver_akun($user_id)
+    {
+        $cekdata = $this->db->get_where("users", ["id" => $user_id]);
+        $verifikasi_akun = "off";
+        if ($cekdata->num_rows() == 1) {
+            $verifikasi_akun = $cekdata->row()->verifikasi_akun;
+        }
+
+        return $verifikasi_akun;
+    }
 }

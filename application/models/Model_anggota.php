@@ -9,7 +9,9 @@ class Model_anggota extends CI_Model
         $data = $this->db
             ->select(
                 "mitra.*, 
+                users.id as user_id,
                 users.name as kontak_person,
+                users.verifikasi_akun as onoff,
                 a.value as jenis_mitra,
                 b.value as roles"
             )
@@ -60,10 +62,12 @@ class Model_anggota extends CI_Model
         $data = $this->db
             ->select(
                 "mitra.*, 
+                users.name as name_user,
                 a.value as jenis_mitra,
                 b.value as roles"
             )
             ->join("roles", "roles.mitra_id = mitra.id", "inner")
+            ->join("users", "users.id = roles.user_id", "inner")
             ->join("enumeration as b", "b.id = roles.role_id", "inner")
             ->join("enumeration as a", "a.id = mitra.jenis_mitra", "inner")
             ->get_where("mitra", ["roles.user_id" => $id])->row();

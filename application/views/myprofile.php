@@ -109,8 +109,8 @@
                                     <div class="col-md-12">
                                         <div class="mb-3">
                                             <label class="form-label" for="exampleFormControlInput1">Nama Kontak*</label>
-                                            <input name="nama_singkat1" class="form-control" id="exampleFormControlInput1" type="text" placeholder="Nama Kontak" value="<?= set_value('nama_singkat1', 'Bambang'); ?>">
-                                            <?php echo form_error('nama_singkat', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
+                                            <input name="name_user" class="form-control" id="exampleFormControlInput1" type="text" placeholder="Nama Kontak" value="<?= set_value('name_user', $cruddata->name_user ?? ''); ?>">
+                                            <?php echo form_error('name_user', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
                                         </div>
                                     </div>
                                 </div>
@@ -130,8 +130,8 @@
                                             <label class="form-label" for="exampleFormControlInput1">WhatsApp / Telegram</label>
                                             <div class="input-group">
                                                 <span class="input-group-text"><i data-feather="phone"></i></span>
-                                                <input name="no_telp_mitra" class="form-control" id="exampleFormControlInput1" type="text" placeholder="WhatsApp / Telegram" value="<?= set_value('no_telp_mitra', $cruddata->no_telp_mitra ?? ''); ?>">
-                                                <?php echo form_error('no_telp_mitra', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
+                                                <input name="no_wa" class="form-control" id="exampleFormControlInput1" type="text" placeholder="WhatsApp / Telegram" value="<?= set_value('no_wa', $cruddata->no_wa ?? ''); ?>">
+                                                <?php echo form_error('no_wa', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -176,17 +176,33 @@
                                                     Media Sosial
                                                 </label>
                                                 <div id="medsos">
-                                                    <div class="row mb-1">
-                                                        <div class="col-md-2">
-                                                            <a href="javascript:;" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Hapus</a>
+                                                    <?php if ($cruddata->medsos != "") { ?>
+                                                        <?php foreach (json_decode($cruddata->medsos) as $key => $value) { ?>
+                                                            <div class="row mb-1">
+                                                                <div class="col-md-2">
+                                                                    <a href="javascript:;" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Hapus</a>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <input type="text" name="medsos[]" class="form-control" placeholder="IG/FB/TWITTER" value="<?= $key ?>">
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <input type="text" name="medsosakun[]" class="form-control" placeholder="@kppa" value="<?= $value ?>">
+                                                                </div>
+                                                            </div>
+                                                        <?php } ?>
+                                                    <?php } else { ?>
+                                                        <div class="row mb-1">
+                                                            <div class="col-md-2">
+                                                                <a href="javascript:;" onclick="$(this).parent().parent().remove();" class="btn btn-danger">Hapus</a>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input type="text" name="medsos[]" class="form-control" placeholder="IG/FB/TWITTER">
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <input type="text" name="medsosakun[]" class="form-control" placeholder="@kppa">
+                                                            </div>
                                                         </div>
-                                                        <div class="col-md-4">
-                                                            <input type="text" class="form-control" placeholder="IG/FB/TWITTER">
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <input type="text" class="form-control" placeholder="@kppa">
-                                                        </div>
-                                                    </div>
+                                                    <?php } ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -223,7 +239,7 @@
                                             <label class="form-label" for="exampleFormControlInput1">Dasar Hukum (File : PDF | Max Size : 5M)</label>
                                             <input name="dasar_hukum" class="form-control" id="exampleFormControlInput1" type="file">
                                         </div>
-                                        <?php if (file_exists('berkas/dasarhukum/' . $cruddata->dasar_hukum)) { ?>
+                                        <?php if ($cruddata->dasar_hukum != "" and file_exists('berkas/dasarhukum/' . $cruddata->dasar_hukum)) { ?>
                                             <div class="file-content mb-3">
                                                 <div class="file-manager">
                                                     <ul class="files" style="width: 100%">
@@ -259,10 +275,10 @@
                                                 "<a href=\"javascript:;\" onclick=\"$(this).parent().parent().remove();\" class='btn btn-danger'>Hapus</a>" +
                                                 "</div>" +
                                                 "<div class='col-md-4'>" +
-                                                "<input type='text' class='form-control' placeholder='IG/FB/TWITTER'>" +
+                                                "<input type='text' name='medsos[]' class='form-control' placeholder='IG/FB/TWITTER'>" +
                                                 "</div>" +
                                                 "<div class='col-md-6'>" +
-                                                "<input type='text' class='form-control' placeholder='@kppa'>" +
+                                                "<input type='text' name='medsosakun[]' class='form-control' placeholder='@kppa'>" +
                                                 "</div>" +
                                                 "</div>";
                                             $("#medsos").append(html);

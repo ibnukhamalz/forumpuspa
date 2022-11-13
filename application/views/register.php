@@ -53,15 +53,30 @@
                                 <input type="hidden" name="link" value="<?= uri_string(); ?>">
                                 <input type="hidden" name="encrypt" value="<?= $encrypt ?>">
                                 <input type="hidden" name="token" value="<?= $token ?>">
+                                <?php
+                                $readonly = "";
+                                $valuenamaasingkat = "";
+                                $titleinput = "Anggota";
+                                if (in_array("admin", $role)) {
+                                    if (in_array("pusat", $role)) {
+                                        $valuenamaasingkat = "Admin Forum Pusat";
+                                    } else {
+                                        $valuenamaasingkat = "Admin Forum ";
+                                    }
+                                    $readonly = "readonly style=\"background-color: #ddd;\"";
+                                    $titleinput = "Forum";
+                                }
+                                echo "<input type='hidden' value='" . $valuenamaasingkat . "' name='nama_singkat'>";
+                                ?>
                                 <div class="form-group">
-                                    <label class="col-form-label pt-0">Nama Singkat Forum</label>
-                                    <input name="nama_singkat" class="form-control" type="text" required="" placeholder="Nama Singkat Forum">
+                                    <label class="col-form-label pt-0">Nama Lengkap <?= $titleinput ?></label>
+                                    <input id="namalengkapforum" name="nama_lengkap" class="form-control" type="text" required="" value="<?= $valuenamaasingkat ?>" placeholder="Nama Lengkap <?= $titleinput ?>" <?= $readonly ?>>
                                 </div>
                                 <?php if (in_array("admin", $role)) { ?>
                                     <?php if (!in_array("pusat", $role)) { ?>
                                         <div class="form-group">
                                             <label class="col-form-label pt-0">Provinsi</label>
-                                            <select class="select2filter col-sm-12 form-control" name="kode_wilayah" onchange="kabupatenkota(this.value);">
+                                            <select class="select2filter col-sm-12 form-control" name="kode_wilayah" onchange="kabupatenkota(this.value, 'login/daerah', 'prov');">
                                                 <option value></option>
                                                 <?php
                                                 foreach ($qprovinsi as $keyQp => $valueQp) {
@@ -92,7 +107,7 @@
                                             <option value></option>
                                             <?php
                                             foreach ($qinduk as $keyQp => $valueQp) {
-                                                echo "<option value='" . $valueQp->mitra_id . "'>" . $valueQp->nama_singkat . "</option>";
+                                                echo "<option value='" . $valueQp->mitra_id . "'>" . $valueQp->nama_lengkap . "</option>";
                                             }
                                             ?>
                                         </select>
@@ -141,29 +156,35 @@
                 allowClear: true
             });
 
-            function kabupatenkota(params) {
+            function kabupatenkota(params, url = null, level = null) {
                 var url = "";
                 $.ajax({
                     type: "POST",
-                    url: "<?= base_url('login/daerah') ?>",
+                    url: "<?= base_url() ?>" + url,
                     data: {
                         id: params
                     },
                     success: function(msg) {
-                        var kabkot = JSON.parse(msg);
-                        var cekarray = Array.isArray(kabkot);
-                        var tampilin = "<option value></option>";
-                        if (cekarray == true) {
-                            for (let index = 0; index < kabkot.length; index++) {
-                                var str = kabkot[index]['name'];
-                                str = str.toLowerCase().replace(/^[\u00C0-\u1FFF\u2C00-\uD7FF\w]|\s[\u00C0-\u1FFF\u2C00-\uD7FF\w]/g, function(letter) {
-                                    return letter.toUpperCase();
-                                });
-                                tampilin += "<option value='" + kabkot[index]['id'] + "'>" + str + "</option>";
+                        if (level != "prov") {
+
+                            var kabkot = JSON.parse(msg);
+                            var cekarray = Array.isArray(kabkot);
+                            var tampilin = "<option value></option>";
+                            if (cekarray == true) {
+                                for (let index = 0; index < kabkot.length; index++) {
+                                    var str = kabkot[index]['name'];
+                                    str = str.toLowerCase().replace(/^[\u00C0-\u1FFF\u2C00-\uD7FF\w]|\s[\u00C0-\u1FFF\u2C00-\uD7FF\w]/g, function(letter) {
+                                        return letter.toUpperCase();
+                                    });
+                                    tampilin += "<option value='" + kabkot[index]['id'] + "'>" + str + "</option>";
+                                }
+                                document.getElementById('kabupatenkotanya').innerHTML = tampilin;
+                            } else {
+                                document.getElementById('kabupatenkotanya').innerHTML = tampilin;
                             }
-                            document.getElementById('kabupatenkotanya').innerHTML = tampilin;
                         } else {
-                            document.getElementById('kabupatenkotanya').innerHTML = tampilin;
+                            alert('maot');
+                            document.getElementById('namalengkapforum').value = 'oke';
                         }
                     }
                 });

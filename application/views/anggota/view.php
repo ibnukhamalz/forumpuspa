@@ -76,12 +76,11 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Details</th>
-                                    <th>Kontak Person</th>
                                     <th>Wilayah</th>
                                     <th>Jenis Mitra</th>
-                                    <th>No Telp</th>
                                     <th>Level User</th>
-                                    <th>Action</th>
+                                    <th>Status</th>
+                                    <th style="width: 100px;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -109,13 +108,18 @@
                                             <h6> <?= $valueLD->nama_singkat ?></h6>
                                             <span><?= $valueLD->nama_lengkap ?></span>
                                         </td>
-                                        <td><?= $valueLD->kontak_person ?></td>
                                         <td><?= $daerahnya->name ?? '' ?></td>
                                         <td><?= $valueLD->jenis_mitra ?></td>
-                                        <td><?= $valueLD->no_telp_mitra ?></td>
                                         <td><?= $valueLD->roles ?></td>
-                                        <td>
-                                            <a href="<?= base_url('anggota/detail' . $valueLD->id) ?>" class="btn btn-primary btn-xs"><b>Detail</b></a>
+                                        <td align="center">
+                                            <div class="media-body icon-state switch-outline">
+                                                <label class="switch" onclick="document.location = '<?= base_url('anggota/index/verif/' . $valueLD->user_id) ?>'">
+                                                    <input type="checkbox" <?= ($valueLD->onoff == "on") ? 'checked' : ''; ?> disabled><span class="switch-state bg-primary"></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td style="white-space: nowrap; text-align: center;">
+                                            <a href="<?= base_url('anggota/detail/' . $valueLD->user_id) ?>" class="btn btn-primary btn-xs"><b>Detail</b></a>
                                             <!-- <a href="<?= base_url('anggota/crud/' . $valueLD->id) ?>" class="btn btn-success btn-xs">Ubah</a> -->
                                             <a href="<?= base_url('anggota/delete') ?>" class="btn btn-danger btn-xs">Hapus</a>
                                         </td>

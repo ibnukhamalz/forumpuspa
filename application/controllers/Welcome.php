@@ -89,11 +89,21 @@ class Welcome extends CI_Controller
 				'type' => "pdf"
 			);
 			$uploaddasarhukum = $this->uploadfile($config, "dasar_hukum", $this->input->post('id') ?? null);
-
+			$medsos = "";
+			if (is_array($this->input->post('medsos')) and is_array($this->input->post('medsosakun'))) {
+				if (count($this->input->post('medsos')) > 0 and count($this->input->post('medsosakun')) > 0) {
+					foreach ($this->input->post('medsos') as $key => $value) {
+						$json[$value] = $this->input->post('medsosakun')[$key];
+					}
+					$medsos = json_encode($json);
+				}
+			}
 			$data = array(
+				'medsos' => $medsos,
 				'nama_singkat' => $this->input->post('nama_singkat'),
 				'nama_lengkap' => ucwords(strtolower($this->input->post('nama_lengkap'))),
 				'no_telp_mitra' => $this->input->post('no_telp_mitra'),
+				'no_wa' => $this->input->post('no_wa'),
 				'email_mitra' => strtolower($this->input->post('email_mitra')),
 				'website_mitra' => strtolower($this->input->post('website_mitra')),
 				'alamat_mitra' => $this->input->post('alamat_mitra'),
@@ -101,18 +111,19 @@ class Welcome extends CI_Controller
 				'permasalahan' => $this->input->post('permasalahan'),
 				'kebutuhan' => $this->input->post('kebutuhan')
 			);
-			if ($uploadlogo['status'] == true) {
-				$data['logo'] = $uploadlogo['file_name'];
-			}
 			if ($uploaddasarhukum['status'] == true) {
 				$data['dasar_hukum'] = $uploaddasarhukum['file_name'];
 			}
-
+			$this->mcrud->updateData("users", ["name" => ucwords(strtolower($this->input->post('name_user')))], $this->session->user_id);
 			$this->mcrud->updateData("mitra", $data, $this->input->post('id'));
 		}
 
 		$this->session->set_flashdata("notif", ["icon" => "success", "title" => "Berhasil", "pesan" => "Data Berhasil diperbaharui ..."]);
-		redirect('welcome/myprofile');
+		if ($this->input->post('link') != '') {
+			redirect($this->input->post('link'));
+		} else {
+			redirect('welcome/myprofile');
+		}
 	}
 
 	function uploadfile($confignya, $namainput, $id = null)

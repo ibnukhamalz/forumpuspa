@@ -11,8 +11,8 @@ class Model_crud extends CI_Model
         $this->db->update($table, $data, ["id" => $id]);
     }
 
-    public function deleteData($table, $data, $id)
+    public function deleteData($table, $id)
     {
-        $this->db->update($table, $data, ["id" => $id]);
+        $this->db->delete($table, ["id" => $id]);
     }
 }

@@ -21,8 +21,8 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label" for="exampleFormControlInput1">Nama Lengkap Kegiatan</label>
-                                        <input name="nama_singkat" class="form-control" id="exampleFormControlInput1" type="text" placeholder="Nama Lengkap Kegiatan" value="<?= set_value('nama_singkat', $cruddata->nama_singkat ?? ''); ?>">
-                                        <?php echo form_error('nama_singkat', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
+                                        <input name="nama_lengkap" class="form-control" id="exampleFormControlInput1" type="text" placeholder="Nama Lengkap Kegiatan" value="<?= set_value('nama_lengkap', $cruddata->nama_lengkap ?? ''); ?>">
+                                        <?php echo form_error('nama_lengkap', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -69,14 +69,16 @@
                                             <div class="col">
                                                 <?php
                                                 foreach ($enuTM as $keyQTM => $valueQTM) {
+                                                    $select = false;
+                                                    if (!empty($cruddata->tujuan_dan_manfaat) and in_array($valueQTM->id, json_decode($cruddata->tujuan_dan_manfaat))) $select = true;
                                                     echo "<label class='d-block' for='chk-ani" . $keyQTM . "'>
-                                                        <input class='checkbox_animated' id='chk-ani" . $keyQTM . "' type='checkbox' name='tujuan_dan_manfaat[]' value='" . $valueQTM->id . "'> " . $valueQTM->value . "
+                                                        <input class='checkbox_animated' id='chk-ani" . $keyQTM . "' type='checkbox' name='tujuan_dan_manfaat[]' value='" . $valueQTM->id . "'" . set_checkbox('tujuan_dan_manfaat[]', $valueQTM->id ?? '', $select) . "> " . $valueQTM->value . "
                                                     </label>";
                                                 }
                                                 ?>
                                             </div>
                                         </div>
-                                        <?php echo form_error('tujuan_dan_manfaat', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
+                                        <?php echo form_error('tujuan_dan_manfaat[]', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
                                     </div>
                                 </div>
                             </div>
@@ -103,16 +105,18 @@
                                         <div class="row">
                                             <?php
                                             foreach ($enuSK as $keyQSK => $valueQSK) {
+                                                $select = false;
+                                                if (!empty($cruddata->sasaran) and in_array($valueQSK->id, json_decode($cruddata->sasaran))) $select = true;
                                                 echo "<div class='col-md-6'>";
                                                 echo "<label class='d-block' for='chk-ani1" . $keyQSK . "'>
-                                                        <input class='checkbox_animated' id='chk-ani1" . $keyQSK . "' type='checkbox' name='sasaran[]' value='" . $valueQSK->id . "'> " . $valueQSK->value . "
+                                                        <input class='checkbox_animated' id='chk-ani1" . $keyQSK . "' type='checkbox' name='sasaran[]' value='" . $valueQSK->id . "'" . set_checkbox('sasaran[]', $valueQSK->id ?? '', $select) . "> " . $valueQSK->value . "
                                                     </label>
                                                 </div>";
                                             }
                                             ?>
 
                                         </div>
-                                        <?php echo form_error('sasaran', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
+                                        <?php echo form_error('sasaran[]', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
                                     </div>
                                 </div>
                             </div>
@@ -149,8 +153,8 @@
                                 <div class="col">
                                     <div class="mb-3">
                                         <label class="form-label" for="exampleFormControlInput1">Keterangan Status Kegiatan</label>
-                                        <textarea class="form-control" name="analisis_resiko" placeholder="Keterangan Status Kegiatan"><?= set_value('analisis_resiko', $cruddata->analisis_resiko ?? ''); ?></textarea>
-                                        <?php echo form_error('analisis_resiko', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
+                                        <textarea class="form-control" name="keterangan_status_kegiatan" placeholder="Keterangan Status Kegiatan"><?= set_value('keterangan_status_kegiatan', $cruddata->keterangan_status_kegiatan ?? ''); ?></textarea>
+                                        <?php echo form_error('keterangan_status_kegiatan', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
                                     </div>
                                 </div>
                             </div>
@@ -158,15 +162,15 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label" for="exampleFormControlInput1">Keunikan / Kreativitas</label>
-                                        <textarea class="form-control" name="analisis_resiko" placeholder="Keunikan / Kreativitas"><?= set_value('analisis_resiko', $cruddata->analisis_resiko ?? ''); ?></textarea>
-                                        <?php echo form_error('analisis_resiko', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
+                                        <textarea class="form-control" name="keunikan" placeholder="Keunikan / Kreativitas"><?= set_value('keunikan', $cruddata->keunikan ?? ''); ?></textarea>
+                                        <?php echo form_error('keunikan', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label" for="exampleFormControlInput1">Potensi</label>
-                                        <textarea class="form-control" name="analisis_resiko" placeholder="Potensi Pengembangan Lebih Lanjut"><?= set_value('analisis_resiko', $cruddata->analisis_resiko ?? ''); ?></textarea>
-                                        <?php echo form_error('analisis_resiko', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
+                                        <textarea class="form-control" name="potensi" placeholder="Potensi Pengembangan Lebih Lanjut"><?= set_value('potensi', $cruddata->potensi ?? ''); ?></textarea>
+                                        <?php echo form_error('potensi', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
                                     </div>
                                 </div>
                                 <div class="col-md-6">

@@ -16,7 +16,7 @@
                                     <div class="profile-title">
                                         <div class="media">
                                             <div>
-                                                <img class="img-70 rounded-circle" alt="" src="<?= base_url('berkas/logo/' . $cruddata->logo) ?? base_url('template/assets/images/logo/logo.png') ?>" style="border: 2px solid; height:70px">
+                                                <img class="img-70 rounded-circle" alt="" src="<?= $this->mview->logouser($this->session->mitra_id); ?>" style="border: 2px solid; height:70px">
                                                 <div class="icon-wrapper" style="position: absolute; top:0; background-color: white; border-radius:50%; padding:5px; box-shadow: 0 0 6px 3px rgb(68 102 242 / 20%); cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modalfotoprofile">
                                                     <i class="icofont icofont-pencil-alt-5"></i>
                                                 </div>

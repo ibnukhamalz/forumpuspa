@@ -26,6 +26,7 @@
 	<link rel="stylesheet" type="text/css" href="<?= base_url('template/'); ?>assets/css/responsive.css">
 	<link rel="stylesheet" type="text/css" href="<?= base_url('template/'); ?>assets/css/vendors/datatables.css">
 	<link rel="stylesheet" type="text/css" href="<?= base_url('template/'); ?>assets/css/vendors/select2.css">
+
 </head>
 
 <body onload="startTime()">

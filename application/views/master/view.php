@@ -59,7 +59,7 @@
                         <table class="display" id="basic-1">
                             <thead>
                                 <tr>
-                                    <th style="width: 100px;">No</th>
+                                    <th style="width: 30px;">No</th>
                                     <th>Details</th>
                                     <?php
                                     if ($sub == "tahapan") {

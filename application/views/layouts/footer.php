@@ -63,6 +63,8 @@
 
 <script src="<?= base_url('template/'); ?>assets/js/datatable/datatables/jquery.dataTables.min.js"></script>
 <script src="<?= base_url('template/'); ?>assets/js/product-list-custom.js"></script>
+<script src="<?= base_url('template/'); ?>assets/js/tooltip-init.js"></script>
+
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 	$(".select2filter").select2({

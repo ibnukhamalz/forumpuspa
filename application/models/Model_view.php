@@ -3,10 +3,14 @@ class Model_view extends CI_Model
 {
     public function logouser($id = null)
     {
-        $logo = base_url('template/assets/images/dashboard/profile.jpg');
+        $logo = base_url('template/assets/images/logo/user1.png');
         if ($id != null) {
             $data = $this->db->get_where("mitra", ["id" => $id])->row();
-            $logo = base_url('berkas/logo/' . $data->logo);
+            if ($data->logo != '' and file_exists('berkas/logo/' . $data->logo)) {
+                $logo = base_url('berkas/logo/' . $data->logo);
+            } else {
+                $logo = base_url('template/assets/images/logo/user1.png');
+            }
         }
 
         return $logo;

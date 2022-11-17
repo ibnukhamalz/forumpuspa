@@ -31,72 +31,182 @@
                                         <button class="btn btn-link btn-block text-start" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Pencarian</button>
                                     </h2>
                                 </div>
-                                <div class="collapse" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                    <div class="card-body filter-cards-view animate-chk">
-                                        <div class="row">
-                                            <div class="job-filter col-md-6 mb-3">
-                                                <div class="faq-form">
-                                                    <div class="col-form-label">Level Forum</div>
-                                                    <select class="select2filter col-sm-12">
-                                                        <option value></option>
-                                                        <?php
-                                                        foreach ($qlevelf as $keyQl => $valueQl) {
-                                                            if ($valueQl->value != "Superadmin") {
-                                                                echo "<option value='" . $valueQl->id . "'>" . $valueQl->value . "</option>";
+                                <!-- filter :
+                                - pencarian seluruh
+                                - tahapan
+                                - jenis kegiatan
+                                - anggota forum
+                                - jenis anggota forum (word yang baru)
+                                - tujuan anggota (word yang baru)
+                                - Sasaran Kegiatan (word yang baru) -->
+                                <div class="collapse show" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                    <form method="get">
+                                        <div class="card-body filter-cards-view animate-chk">
+                                            <div class="row">
+                                                <div class="job-filter col-md-4 mb-3">
+                                                    <div class="faq-form">
+                                                        <div class="col-form-label">Seluruh</div>
+                                                        <input type="text" class="form-control" placeholder="Pencarian Seluruh" style="border: 1px solid #aaa; padding: 0.55rem 0.75rem;">
+                                                    </div>
+                                                </div>
+                                                <div class="job-filter col-md-4 mb-3">
+                                                    <div class="faq-form">
+                                                        <div class="col-form-label">Tahapan</div>
+                                                        <select name="tahapan" class="select2filter col-sm-12">
+                                                            <option value></option>
+                                                            <?php
+                                                            foreach ($newenum->getData("tahapan") as $keyL => $valueL) {
+                                                                echo "<option value='" . $valueL->id . "'";
+                                                                if($this->input->get('tahapan') == $valueL->id){ echo " selected"; }
+                                                                echo ">" . $valueL->value . "</option>";
                                                             }
-                                                        }
-                                                        ?>
-                                                    </select>
+                                                            ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="job-filter col-md-4 mb-3">
+                                                    <div class="faq-form">
+                                                        <div class="col-form-label">Jenis Kegiatan</div>
+                                                        <select name="jenis_kegiatan" class="select2filter col-sm-12">
+                                                            <option value></option>
+                                                            <?php
+                                                            foreach ($newenum->getData("jenis kegiatan") as $keyL => $valueL) {
+                                                                echo "<option value='" . $valueL->id . "'";
+                                                                if($this->input->get('jenis_kegiatan') == $valueL->id){ echo " selected"; }
+                                                                echo ">" . $valueL->value . "</option>";
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="job-filter col-md-4 mb-3">
+                                                    <div class="faq-form">
+                                                        <div class="col-form-label">Sasaran Kegiatan</div>
+                                                        <select name="sasaran_kegiatan" class="select2filter col-sm-12">
+                                                            <option value></option>
+                                                            <?php
+                                                            foreach ($newenum->getData("sasaran kegiatan") as $keyL => $valueL) {
+                                                                echo "<option value='" . $valueL->id . "'";
+                                                                if($this->input->get('sasaran_kegiatan') == $valueL->id){ echo " selected"; }
+                                                                echo ">" . $valueL->value . "</option>";
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="job-filter col-md-4 mb-3">
+                                                    <div class="faq-form">
+                                                        <div class="col-form-label">Jenis Anggota Forum</div>
+                                                        <select name="jenis_anggota" class="select2filter col-sm-12">
+                                                            <option value></option>
+                                                            <?php
+                                                            foreach ($newenum->getData("jenis entitas") as $keyL => $valueL) {
+                                                                echo "<option value='" . $valueL->id . "'";
+                                                                if($this->input->get('jenis_anggota') == $valueL->id){ echo " selected"; }
+                                                                echo ">" . $valueL->value . "</option>";
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="job-filter col-md-4 mb-3">
+                                                    <div class="faq-form">
+                                                        <div class="col-form-label">Tujuan Kegiatan</div>
+                                                        <select name="tujuan_kegiatan" class="select2filter col-sm-12">
+                                                            <option value></option>
+                                                            <?php
+                                                            foreach ($newenum->getData("tujuan Kegiatan") as $keyL => $valueL) {
+                                                                echo "<option value='" . $valueL->id . "'";
+                                                                if($this->input->get('tujuan_kegiatan') == $valueL->id){ echo " selected"; }
+                                                                echo ">" . $valueL->value . "</option>";
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="job-filter col-md-6 mb-3">
-                                                <div class="faq-form">
-                                                    <div class="col-form-label">Wilayah</div>
-                                                    <select class="select2filter col-sm-12">
-                                                        <option value></option>
-                                                        <option value="AL">Alabama</option>
-                                                        <option value="WY">Wyoming</option>
-                                                        <option value="WY">Coming</option>
-                                                        <option value="WY">Hanry Die</option>
-                                                        <option value="WY">John Doe</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="job-filter col-md-6 mb-3">
-                                                <div class="faq-form">
-                                                    <div class="col-form-label">Level User</div>
-                                                    <select class="select2filter col-sm-12">
-                                                        <option value></option>
-                                                        <?php
-                                                        foreach ($qlevelu as $keyQl => $valueQl) {
-                                                            if ($valueQl->value != "Superadmin") {
-                                                                echo "<option value='" . $valueQl->id . "'>" . $valueQl->value . "</option>";
-                                                            }
-                                                        }
-                                                        ?>
-                                                    </select>
+                                            <div class="card-footer p-0 row pt-3">
+                                                <div>
+                                                    <a type="submit" class="btn btn-danger pull-right text-center col-auto ms-2">Reset</a>
+                                                    <input type="submit" class="btn btn-primary pull-right text-center col-auto">
                                                 </div>
                                             </div>
                                         </div>
-                                        <button class="btn btn-primary text-center" type="button">Find jobs</button>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="tab-content" id="top-tabContent">
-                        <div class="tab-pane fade show active" id="top-semua" role="tabpanel" aria-labelledby="top-semua-tab">
+    </div>
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="tab-content" id="top-tabContent">
+                    <div class="tab-pane fade show active" id="top-semua" role="tabpanel" aria-labelledby="top-semua-tab">
+                        <div class="row">
+                            <?php foreach ($newkegiatan->getDataNew() as $keyNK => $valueNK) { ?>
+                                <?php $totalprogress = $newkegiatan->hitungprogress($valueNK->tahapan, $valueNK->persentase_progres) ?>
+                                <div class="col-xxl-4 col-lg-6">
+                                    <div class="project-box"><span class="badge badge-primary">Tahap <?= $valueNK->tahapan ?></span>
+                                        <h6 class='mt-3 mb-0'><?= $valueNK->nama_lengkap ?></h6>
+                                        <div class="media">
+                                            <div class="media-body">
+                                                <p>
+                                                    <?= $valueNK->namaforum ?>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <p></p>
+                                        <div class="row details">
+                                            <div class="col-6"><span>Perkembangan Tahapan</span></div>
+                                            <div class="col-6 text-primary"> <?= $valueNK->persentase_progres ?>% </div>
+                                            <div class="col-6"> <span>Total Progress</span></div>
+                                            <div class="col-6 text-primary"> <?= $totalprogress ?>%</div>
+                                            <div class="col-6"> <span>Komentar</span></div>
+                                            <div class="col-6 text-primary">2</div>
+                                        </div>
+                                        <div>
+                                            <ul>
+                                                <li>
+                                                    <a class="btn btn-primary btn-sm" href="<?= base_url('kegiatan/detail/') . $valueNK->id ?>">Lihat</a>
+                                                </li>
+                                                <li>
+                                                    <a class="btn btn-warning btn-sm" href="<?= base_url('kegiatan/crud/') . $valueNK->id ?>"></i>Ubah</a>
+                                                </li>
+                                                <li>
+                                                    <form action="<?= base_url('kegiatan/delete/') . $valueNK->id ?>" method="POST">
+                                                        <button class="btn btn-danger btn-sm" type="submit"></i>Hapus</button>
+                                                    </form>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="project-status mt-4">
+                                            <div class="media mb-0">
+                                                <p><?= $totalprogress ?> % </p>
+                                                <div class="media-body text-end"><span>Selesai</span></div>
+                                            </div>
+                                            <div class="progress" style="height: 5px">
+                                                <div class="progress-bar-animated bg-primary progress-bar-striped" role="progressbar" style="width: <?= $totalprogress ?>%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php
+                            }
+                            ?>
+                        </div>
+                    </div>
+                    <?php for ($i = 1; $i <= 6; $i++) { ?>
+                        <div class="tab-pane fade" id="top-tahap<?= $i ?>" role="tabpanel" aria-labelledby="tahap<?= $i ?>-top-tab">
                             <div class="row">
-                                <?php foreach ($newkegiatan->getDataNew() as $keyNK => $valueNK) { ?>
+                                <?php foreach ($newkegiatan->getDataNew($i) as $keyNK => $valueNK) { ?>
                                     <?php $totalprogress = $newkegiatan->hitungprogress($valueNK->tahapan, $valueNK->persentase_progres) ?>
                                     <div class="col-xxl-4 col-lg-6">
-                                        <div class="project-box"><span class="badge badge-primary">Tahap <?= $valueNK->tahapan ?></span>
+                                        <div class="project-box">
+                                            <span class="badge badge-primary">Tahap <?= $valueNK->tahapan ?></span>
                                             <h6 class='mt-3 mb-0'><?= $valueNK->nama_lengkap ?></h6>
                                             <div class="media">
                                                 <div class="media-body">
@@ -145,100 +255,44 @@
                                 ?>
                             </div>
                         </div>
-                        <?php for ($i = 1; $i <= 6; $i++) { ?>
-                            <div class="tab-pane fade" id="top-tahap<?= $i ?>" role="tabpanel" aria-labelledby="tahap<?= $i ?>-top-tab">
-                                <div class="row">
-                                    <?php foreach ($newkegiatan->getDataNew($i) as $keyNK => $valueNK) { ?>
-                                        <?php $totalprogress = $newkegiatan->hitungprogress($valueNK->tahapan, $valueNK->persentase_progres) ?>
-                                        <div class="col-xxl-4 col-lg-6">
-                                            <div class="project-box">
-                                                <span class="badge badge-primary">Tahap <?= $valueNK->tahapan ?></span>
-                                                <h6 class='mt-3 mb-0'><?= $valueNK->nama_lengkap ?></h6>
-                                                <div class="media">
-                                                    <div class="media-body">
-                                                        <p>
-                                                            <?= $valueNK->namaforum ?>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <p></p>
-                                                <div class="row details">
-                                                    <div class="col-6"><span>Perkembangan Tahapan</span></div>
-                                                    <div class="col-6 text-primary"> <?= $valueNK->persentase_progres ?>% </div>
-                                                    <div class="col-6"> <span>Total Progress</span></div>
-                                                    <div class="col-6 text-primary"> <?= $totalprogress ?>%</div>
-                                                    <div class="col-6"> <span>Komentar</span></div>
-                                                    <div class="col-6 text-primary">2</div>
-                                                </div>
-                                                <div>
-                                                    <ul>
-                                                        <li>
-                                                            <a class="btn btn-primary btn-sm" href="<?= base_url('kegiatan/detail/') . $valueNK->id ?>">Lihat</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="btn btn-warning btn-sm" href="<?= base_url('kegiatan/crud/') . $valueNK->id ?>"></i>Ubah</a>
-                                                        </li>
-                                                        <li>
-                                                            <form action="<?= base_url('kegiatan/delete/') . $valueNK->id ?>" method="POST">
-                                                                <button class="btn btn-danger btn-sm" type="submit"></i>Hapus</button>
-                                                            </form>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="project-status mt-4">
-                                                    <div class="media mb-0">
-                                                        <p><?= $totalprogress ?> % </p>
-                                                        <div class="media-body text-end"><span>Selesai</span></div>
-                                                    </div>
-                                                    <div class="progress" style="height: 5px">
-                                                        <div class="progress-bar-animated bg-primary progress-bar-striped" role="progressbar" style="width: <?= $totalprogress ?>%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <?php
-                                    }
-                                    ?>
-                                </div>
-                            </div>
-                        <?php } ?>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5>Daftar Kegiatan</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="display" id="basic-1">
-                                    <thead>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Daftar Kegiatan</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="display" id="basic-1">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Kegiatan</th>
+                                        <th>Tahap</th>
+                                        <th>Perkembangan Tahapan</th>
+                                        <th>Total Progres</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $nourut = 1;
+                                    foreach ($listdata as $keyLD => $valueLD) {
+                                        $totalprogress = $newkegiatan->hitungprogress($valueLD->tahapan, $valueLD->persentase_progres);
+                                        ?>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Nama Kegiatan</th>
-                                            <th>Tahap</th>
-                                            <th>Perkembangan Tahapan</th>
-                                            <th>Total Progres</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        $nourut = 1;
-                                        foreach ($listdata as $keyLD => $valueLD) {
-                                            $totalprogress = $newkegiatan->hitungprogress($valueLD->tahapan, $valueLD->persentase_progres);
-                                            ?>
-                                            <tr>
-                                                <td><?= $nourut++ ?></td>
-                                                <td><?= $valueLD->nama_singkat ?></td>
-                                                <td><?= $valueLD->tahapan . " - " . $valueLD->status_tahapan ?></td>
-                                                <td style="text-align: center"><?= $valueLD->persentase_progres ?>% </td>
-                                                <td style="text-align: center"><?= $totalprogress ?>%</td>
-                                                <td style="text-align: center; white-space: nowrap;">
+                                            <td><?= $nourut++ ?></td>
+                                            <td><?= $valueLD->nama_singkat ?></td>
+                                            <td><?= $valueLD->tahapan . " - " . $valueLD->status_tahapan ?></td>
+                                            <td style="text-align: center"><?= $valueLD->persentase_progres ?>% </td>
+                                            <td style="text-align: center"><?= $totalprogress ?>%</td>
+                                            <td style="text-align: center; white-space: nowrap;">
                                                     <!-- <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                                                         <div class="btn-group" role="group">
                                                             <button class="btn btn-primary dropdown-toggle" id="btnGroupDrop1" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Setting</button>

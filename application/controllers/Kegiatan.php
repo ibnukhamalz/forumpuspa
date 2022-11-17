@@ -39,6 +39,7 @@ class Kegiatan extends CI_Controller
 
         $data['listdata'] = $this->mkegiatan->getData($where);
         $data['newkegiatan'] = $this->mkegiatan;
+        $data['newenum'] = $this->menum;
 
         $this->load->view('layouts/main', $data);
     }

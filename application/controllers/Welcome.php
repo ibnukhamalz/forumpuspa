@@ -20,29 +20,31 @@ class Welcome extends CI_Controller
 	{
 		$data['title'] = $this->title;
 		$data['container'] = "dashboard";
-		$cek = $this->db->get_where("mitra", ["id" => $this->session->mitra_id])->row();
 		$kontakperson = $this->db->get_where("users", ["id" => $this->session->user_id])->row();
 		$totalall = 1;
 		$terisi = 0;
-		if ($this->session->role_id != 0) {
+		if(in_array($this->session->role_id, [1,2])){
+			$cek = $this->db->get_where("mitra", ["id" => $this->session->mitra_id])->row();
+			if ($this->session->role_id != 0) {
 
-			foreach ($cek as $key => $value) {
-				$totalall += 1;
+				foreach ($cek as $key => $value) {
+					$totalall += 1;
 
-				if ($cek->$key == "" or is_null($cek->$key)) {
-					$terisi += 0;
-				} else {
+					if ($cek->$key == "" or is_null($cek->$key)) {
+						$terisi += 0;
+					} else {
+						$terisi += 1;
+					}
+				}
+				if ($kontakperson->name != "" or is_null($kontakperson->name)) {
 					$terisi += 1;
 				}
+				$persentase = number_format(($terisi * 100 / $totalall), 2);
+			} else {
+				$persentase = 100;
 			}
-			if ($kontakperson->name != "" or is_null($kontakperson->name)) {
-				$terisi += 1;
-			}
-			$persentase = number_format(($terisi * 100 / $totalall), 2);
-		} else {
-			$persentase = 100;
+			$data['kelengkapan'] = $persentase;
 		}
-		$data['kelengkapan'] = $persentase;
 		$this->load->view('layouts/main', $data);
 	}
 

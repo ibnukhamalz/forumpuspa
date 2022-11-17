@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row second-chart-list third-news-update">
-    <?php if ($kelengkapan != 100) : ?>
+    <?php if (in_array($this->session->role_id, [1,2]) AND $kelengkapan != 100) : ?>
       <div class="col-12 morning-sec">
         <div class="card profile-greeting">
           <div class="card-body py-3">
@@ -9,7 +9,7 @@
               if ($this->session->ver_akun == "off") {
                 echo "<h5>Menunggu Verifikasi Admin</h5>";
               } else {
-              ?>
+                ?>
                 <div class="media mb-0">
                   <p><?= $kelengkapan ?> % </p>
                   <div class="media-body text-end"><span>Kelengkapan Profile</span></div>
@@ -29,7 +29,7 @@
           <div class="media">
             <div class="media-body">
               <div class="greeting-user">
-                <h4 class="f-w-600 font-primary">Halo <?= ucwords($this->session->name); ?> </h4>
+                <h4 class="f-w-600 font-primary">Halo <?= ucwords($this->session->name ?? ''); ?> </h4>
                 <p>Ayo Mulai Buat Hal Yang Luar Biasa</p>
               </div>
             </div>

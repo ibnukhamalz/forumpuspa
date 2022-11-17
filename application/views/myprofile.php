@@ -78,7 +78,7 @@
                     </div>
                 </div>
             </div>
-            <?php if ($this->session->role_id != 0) { ?>
+            <?php if (!in_array($this->session->role_id, [0,3])) { ?>
                 <div class="col-xl-8">
                     <form class="card" method="post" enctype="multipart/form-data">
                         <div class="card-header py-4">
@@ -256,7 +256,7 @@
                                                                     } else {
                                                                         echo number_format($sisa, 2) . " KB";
                                                                     }
-                                                                    ?></p>
+                                                                ?></p>
                                                                 <p> <b>lihat : </b><a href="<?= base_url('berkas/dasarhukum/' . $cruddata->dasar_hukum) ?>" target="_blank">Link</a></p>
                                                             </div>
                                                         </li>
@@ -271,16 +271,16 @@
                                     <script>
                                         function medsos() {
                                             var html = "<div class='row mb-1'>" +
-                                                "<div class='col-md-2'>" +
-                                                "<a href=\"javascript:;\" onclick=\"$(this).parent().parent().remove();\" class='btn btn-danger'>Hapus</a>" +
-                                                "</div>" +
-                                                "<div class='col-md-4'>" +
-                                                "<input type='text' name='medsos[]' class='form-control' placeholder='IG/FB/TWITTER'>" +
-                                                "</div>" +
-                                                "<div class='col-md-6'>" +
-                                                "<input type='text' name='medsosakun[]' class='form-control' placeholder='@kppa'>" +
-                                                "</div>" +
-                                                "</div>";
+                                            "<div class='col-md-2'>" +
+                                            "<a href=\"javascript:;\" onclick=\"$(this).parent().parent().remove();\" class='btn btn-danger'>Hapus</a>" +
+                                            "</div>" +
+                                            "<div class='col-md-4'>" +
+                                            "<input type='text' name='medsos[]' class='form-control' placeholder='IG/FB/TWITTER'>" +
+                                            "</div>" +
+                                            "<div class='col-md-6'>" +
+                                            "<input type='text' name='medsosakun[]' class='form-control' placeholder='@kppa'>" +
+                                            "</div>" +
+                                            "</div>";
                                             $("#medsos").append(html);
                                         }
                                     </script>

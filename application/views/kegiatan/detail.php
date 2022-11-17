@@ -34,6 +34,7 @@
                             <div class="col-sm-5 mb-2">
                                 <?php if ($qdetail->foto != "" and file_exists('berkas/foto-kegiatan/' . $qdetail->foto)) { ?>
                                     <img class="img-fluid sm-50-w" src="<?= base_url('berkas/foto-kegiatan/' . $qdetail->foto) ?>" alt="">
+                                <?php } else { ?>
                                 <?php } ?>
                             </div>
                             <?php $totalprogress = $newkegiatan->hitungprogress($qdetail->tahapan, $qdetail->persentase_progres) ?>
@@ -300,7 +301,7 @@
                                                     <input type="hidden" name="kegiatan_id" value="<?= $detailid ?>">
                                                     <input type="hidden" name="user_id" value="<?= $this->session->user_id ?>">
                                                     <input type="hidden" name="parent_id" value="0">
-                                                    <input class="form-control" type="text" name="komentar" placeholder="Post Your commnets" value="<?= $valueLK->komentar ?>">
+                                                    <input class="form-control" type="text" name="komentar" placeholder="Masukan Komentar" value="<?= $valueLK->komentar ?>">
                                                 </div>
                                                 <div class="modal-footer">
                                                     <a href="javascript:;" class="btn btn-secondary" data-bs-dismiss="modal">Close</a>
@@ -324,7 +325,7 @@
                                                     <input type="hidden" name="kegiatan_id" value="<?= $detailid ?>">
                                                     <input type="hidden" name="user_id" value="<?= $this->session->user_id ?>">
                                                     <input type="hidden" name="parent_id" value="<?= $valueLK->id ?>">
-                                                    <input class="form-control" type="text" name="komentar" placeholder="Post Your commnets" value="">
+                                                    <input class="form-control" type="text" name="komentar" placeholder="Masukan Komentar" value="">
                                                 </div>
                                                 <div class="modal-footer">
                                                     <a href="javascript:;" class="btn btn-secondary" data-bs-dismiss="modal">Close</a>
@@ -420,7 +421,7 @@
                                                             <input type="hidden" name="kegiatan_id" value="<?= $detailid ?>">
                                                             <input type="hidden" name="user_id" value="<?= $this->session->user_id ?>">
                                                             <input type="hidden" name="parent_id" value="<?= $valueLK->id ?>">
-                                                            <input class="form-control" type="text" name="komentar" placeholder="Post Your commnets" value="<?= $valueLKS->komentar ?>">
+                                                            <input class="form-control" type="text" name="komentar" placeholder="Masukan Komentar" value="<?= $valueLKS->komentar ?>">
                                                         </div>
                                                         <div class="modal-footer">
                                                             <a href="javascript:;" class="btn btn-secondary" data-bs-dismiss="modal">Close</a>
@@ -444,7 +445,7 @@
                                                             <input type="hidden" name="kegiatan_id" value="<?= $detailid ?>">
                                                             <input type="hidden" name="user_id" value="<?= $this->session->user_id ?>">
                                                             <input type="hidden" name="parent_id" value="<?= $valueLK->id ?>">
-                                                            <input class="form-control" type="text" name="komentar" placeholder="Post Your commnets" value="">
+                                                            <input class="form-control" type="text" name="komentar" placeholder="Masukan Komentar" value="">
                                                         </div>
                                                         <div class="modal-footer">
                                                             <a href="javascript:;" class="btn btn-secondary" data-bs-dismiss="modal">Close</a>
@@ -458,22 +459,28 @@
                                 <?php } ?>
                             <?php } ?>
                         </div>
-                        <div class="comments-box">
-                            <form action="<?= base_url('kegiatan/savekomen') ?>" method="post">
-                                <div class="media"><img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="<?= $this->mview->logouser($this->session->mitra_id); ?>">
-                                    <div class="media-body">
-                                        <div class="input-group text-box">
-                                            <input type="hidden" name="link" value="<?= uri_string() ?>">
-                                            <input type="hidden" name="kegiatan_id" value="<?= $detailid ?>">
-                                            <input type="hidden" name="user_id" value="<?= $this->session->user_id ?>">
-                                            <input type="hidden" name="parent_id" value="0">
-                                            <input class="form-control" type="text" name="komentar" placeholder="Masukan Komentar" style="border-top-left-radius: 10px; border-bottom-left-radius: 10px;">
-                                            <button type="submit" class="input-group-text"><i data-feather="send" class="p-1"></i></button>
+                        <?php
+                        if(!in_array($this->session->role_id, [1])){
+                            ?>
+                            <div class="comments-box">
+                                <form action="<?= base_url('kegiatan/savekomen') ?>" method="post">
+                                    <div class="media"><img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="<?= $this->mview->logouser($this->session->mitra_id); ?>">
+                                        <div class="media-body">
+                                            <div class="input-group text-box">
+                                                <input type="hidden" name="link" value="<?= uri_string() ?>">
+                                                <input type="hidden" name="kegiatan_id" value="<?= $detailid ?>">
+                                                <input type="hidden" name="user_id" value="<?= $this->session->user_id ?>">
+                                                <input type="hidden" name="parent_id" value="0">
+                                                <input class="form-control" type="text" name="komentar" placeholder="Masukan Komentar" style="border-top-left-radius: 10px; border-bottom-left-radius: 10px;">
+                                                <button type="submit" class="input-group-text"><i data-feather="send" class="p-1"></i></button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
-                        </div>
+                                </form>
+                            </div>
+                            <?php
+                        }
+                        ?>
                     </div>
                 </div>
             </div>

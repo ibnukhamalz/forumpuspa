@@ -97,7 +97,7 @@
                                     <?php $totalprogress = $newkegiatan->hitungprogress($valueNK->tahapan, $valueNK->persentase_progres) ?>
                                     <div class="col-xxl-4 col-lg-6">
                                         <div class="project-box"><span class="badge badge-primary">Tahap <?= $valueNK->tahapan ?></span>
-                                            <h6><?= $valueNK->nama_lengkap ?></h6>
+                                            <h6 class='mt-3 mb-0'><?= $valueNK->nama_lengkap ?></h6>
                                             <div class="media">
                                                 <div class="media-body">
                                                     <p>
@@ -140,7 +140,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                <?php
+                                    <?php
                                 }
                                 ?>
                             </div>
@@ -151,8 +151,9 @@
                                     <?php foreach ($newkegiatan->getDataNew($i) as $keyNK => $valueNK) { ?>
                                         <?php $totalprogress = $newkegiatan->hitungprogress($valueNK->tahapan, $valueNK->persentase_progres) ?>
                                         <div class="col-xxl-4 col-lg-6">
-                                            <div class="project-box"><span class="badge badge-primary">Tahap <?= $valueNK->tahapan ?></span>
-                                                <h6><?= $valueNK->nama_lengkap ?></h6>
+                                            <div class="project-box">
+                                                <span class="badge badge-primary">Tahap <?= $valueNK->tahapan ?></span>
+                                                <h6 class='mt-3 mb-0'><?= $valueNK->nama_lengkap ?></h6>
                                                 <div class="media">
                                                     <div class="media-body">
                                                         <p>
@@ -195,7 +196,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    <?php
+                                        <?php
                                     }
                                     ?>
                                 </div>
@@ -230,7 +231,7 @@
                                         $nourut = 1;
                                         foreach ($listdata as $keyLD => $valueLD) {
                                             $totalprogress = $newkegiatan->hitungprogress($valueLD->tahapan, $valueLD->persentase_progres);
-                                        ?>
+                                            ?>
                                             <tr>
                                                 <td><?= $nourut++ ?></td>
                                                 <td><?= $valueLD->nama_singkat ?></td>
@@ -238,7 +239,7 @@
                                                 <td style="text-align: center"><?= $valueLD->persentase_progres ?>% </td>
                                                 <td style="text-align: center"><?= $totalprogress ?>%</td>
                                                 <td style="text-align: center; white-space: nowrap;">
-                                                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                                    <!-- <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                                                         <div class="btn-group" role="group">
                                                             <button class="btn btn-primary dropdown-toggle" id="btnGroupDrop1" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Setting</button>
                                                             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
@@ -256,8 +257,8 @@
                                                                 </a>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <!-- <ul>
+                                                    </div> -->
+                                                    <ul>
                                                         <li>
                                                             <a class="btn btn-info btn-xs mt-1" style="font-weight:500;" href="<?= base_url('kegiatan/detail/' . $valueLD->id); ?>">Lihat</a>
                                                         </li>
@@ -267,7 +268,7 @@
                                                         <li>
                                                             <a class="btn btn-danger btn-xs mt-1" style="font-weight:500;" href="<?= base_url('kegiatan/delete/' . $valueLD->id); ?>">Hapus</a>
                                                         </li>
-                                                    </ul> -->
+                                                    </ul>
                                                 </td>
                                             </tr>
                                         <?php } ?>

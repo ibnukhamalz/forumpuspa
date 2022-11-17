@@ -74,9 +74,15 @@
                                 </div>
                                 <?php if (in_array("admin", $role)) { ?>
                                     <?php if (!in_array("pusat", $role)) { ?>
+                                        <?php
+                                        $detaildaerah = "";
+                                        if(in_array("provinsi", $role)){
+                                            $detaildaerah = "prov";
+                                        }
+                                        ?>
                                         <div class="form-group">
                                             <label class="col-form-label pt-0">Provinsi</label>
-                                            <select class="select2filter col-sm-12 form-control" name="kode_wilayah" onchange="kabupatenkota(this.value, 'login/daerah', 'prov');">
+                                            <select class="select2filter col-sm-12 form-control" name="kode_wilayah" onchange="kabupatenkota(this.value, <?=$detaildaerah;?>);">
                                                 <option value></option>
                                                 <?php
                                                 foreach ($qprovinsi as $keyQp => $valueQp) {
@@ -96,7 +102,7 @@
                                     <?php if (in_array("pemda", $role)) { ?>
                                         <div class="form-group">
                                             <label class="col-form-label pt-0">Kabupaten/Kota</label>
-                                            <select class="select2filter col-sm-12 form-control" name="kode_wilayah" id="kabupatenkotanya">
+                                            <select class="select2filter col-sm-12 form-control" name="kode_wilayah" id="kabupatenkotanya" onchange="kabupatenkota(this.value, 'kabkot');">
                                             </select>
                                         </div>
                                     <?php } ?>
@@ -156,17 +162,16 @@
                 allowClear: true
             });
 
-            function kabupatenkota(params, url = null, level = null) {
-                var url = "";
+            function kabupatenkota(params, detail = '') {
                 $.ajax({
                     type: "POST",
-                    url: "<?= base_url() ?>" + url,
+                    url: "<?= base_url('login/daerah') ?>",
                     data: {
-                        id: params
+                        id: params,
+                        status: detail
                     },
                     success: function(msg) {
-                        if (level != "prov") {
-
+                        if(detail != "prov" && detail != "kabkot"){
                             var kabkot = JSON.parse(msg);
                             var cekarray = Array.isArray(kabkot);
                             var tampilin = "<option value></option>";
@@ -183,8 +188,13 @@
                                 document.getElementById('kabupatenkotanya').innerHTML = tampilin;
                             }
                         } else {
-                            alert('maot');
-                            document.getElementById('namalengkapforum').value = 'oke';
+                            var detaildaerah = JSON.parse(msg);
+
+                            var str = detaildaerah['name'];
+                            str = str.toLowerCase().replace(/^[\u00C0-\u1FFF\u2C00-\uD7FF\w]|\s[\u00C0-\u1FFF\u2C00-\uD7FF\w]/g, function(letter) {
+                                return letter.toUpperCase();
+                            });
+                            document.getElementById('namalengkapforum').value = "<?=$valuenamaasingkat;?>"+str;
                         }
                     }
                 });

@@ -30,26 +30,31 @@ class Login extends CI_Controller
             if ($ceklogin['login'] == true) {
                 switch ($ceklogin['datalogin']->role_id) {
                     case 0:
-                        $roles = "Super Admin";
-                        break;
+                    $roles = "Superadmin";
+                    $this->session->mitra_id = $ceklogin['datalogin']->mitra_id;
+                    break;
 
                     case 1:
-                        $roles = "Admin Forum " . $ceklogin['datalogin']->jenis_mitra;
-                        $this->session->mitra_id = $ceklogin['datalogin']->mitra_id;
-                        break;
+                    $roles = "Admin Forum " . $ceklogin['datalogin']->jenis_mitra;
+                    $this->session->mitra_id = $ceklogin['datalogin']->mitra_id;
+                    $this->session->mitra = $ceklogin['datalogin']->nama_lengkap;
+                    break;
+
+                    case 2:
+                    $roles = "Anggota Forum " . $ceklogin['datalogin']->jenis_mitra;
+                    $this->session->mitra_id = $ceklogin['datalogin']->mitra_id;
+                    $this->session->mitra = $ceklogin['datalogin']->nama_lengkap;
+                    break;
 
                     default:
-                        $roles = "Anggota Forum " . $ceklogin['datalogin']->jenis_mitra;
-                        $this->session->mitra_id = $ceklogin['datalogin']->mitra_id;
-                        break;
+                    $roles = "Pembina";
+                    break;
                 }
 
                 $this->session->user_id = $ceklogin['datalogin']->user_id;
                 $this->session->email = $ceklogin['datalogin']->email;
-                $this->session->mitra = $ceklogin['datalogin']->nama_lengkap;
                 $this->session->roles = $roles;
                 $this->session->role_id = $ceklogin['datalogin']->role_id;
-
                 $this->session->set_flashdata("notif", ["icon" => "success", "title" => "Berhasil", "pesan" => "Anda telah berhasil Login ..."]);
                 redirect('welcome');
             } else {
@@ -215,8 +220,20 @@ class Login extends CI_Controller
     public function daerah()
     {
         $id = $this->input->post('id');
+        $status = $this->input->post('status');
+        switch ($status) {
+            case 'prov':
+            $cari = "province";
+            break;
+            case 'kabkot':
+            $cari = "regency";
+            break;
+            default:
+            $cari = "regencies";
+            break;
+        }
         if ($id != "") {
-            $data = $this->api->daerah("regencies", $id);
+            $data = $this->api->daerah($cari, $id);
         } else {
             $data = "{}";
         }

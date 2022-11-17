@@ -21,15 +21,20 @@ class Kegiatan extends CI_Controller
         $where = array();
         switch ($this->session->role_id) {
             case 0:
-                $where = [];
-                break;
+            $where = [];
+            break;
+            
+            case 3:
+            $where = [];
+            break;
+
             case 1:
-                $where = ["mitra.id_parent" => $this->session->mitra_id];
-                break;
+            $where = ["mitra.id_parent" => $this->session->mitra_id];
+            break;
 
             default:
-                $where = ["mitra_id" => $this->session->mitra_id];
-                break;
+            $where = ["mitra_id" => $this->session->mitra_id];
+            break;
         }
 
         $data['listdata'] = $this->mkegiatan->getData($where);

@@ -1,0 +1,17 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/u1139594/public_html/puspa/
+    - /bin/cp -R applications $DEPLOYPATH
+    - /bin/cp -R berkas $DEPLOYPATH
+    - /bin/cp -R system $DEPLOYPATH
+    - /bin/cp -R template $DEPLOYPATH
+    - /bin/cp .editorconfig $DEPLOYPATH
+    - /bin/cp .gitignore $DEPLOYPATH
+    - /bin/cp .htaccess $DEPLOYPATH
+    - /bin/cp composer.json $DEPLOYPATH
+    - /bin/cp dosen.png $DEPLOYPATH
+    - /bin/cp index.php $DEPLOYPATH
+    - /bin/cp license.txt $DEPLOYPATH
+    - /bin/cp readme.rst $DEPLOYPATH
+    - /bin/cp .cpanel.yml $DEPLOYPATH

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 18, 2022 at 02:55 AM
+-- Generation Time: Nov 18, 2022 at 02:59 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.7
 
@@ -225,7 +225,6 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`id`, `user_id`, `mitra_id`, `role_id`, `created_at`, `updated_at`) VALUES
 (1, 1, 0, 1, '2022-11-12 14:22:10', '2022-11-18 01:55:19'),
 (2, 2, 1, 2, '2022-11-12 14:33:36', '2022-11-12 14:33:36'),
-(3, 3, 2, 3, '2022-11-12 14:38:12', '2022-11-12 14:38:12'),
 (4, 4, 3, 3, '2022-11-17 12:22:48', '2022-11-17 12:22:48'),
 (5, 1, 4, 52, '2022-11-12 14:22:10', '2022-11-18 01:55:17');
 
@@ -256,9 +255,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `no_telp`, `no_wa`, `logo`, `email`, `password`, `token`, `verifikasi_email`, `verifikasi_akun`, `created_at`, `updated_at`) VALUES
 (1, 'super admin', '0', '', '20221117210214.jpg', 'superadmin@kpppa.co.id', '$2y$10$c/TVUDaT8CDMGyGzqm5fYODSks.Vw52oqQIDOU7aOOYXe8XQUbIa2', '', 'on', 'on', '2022-11-02 10:50:33', '2022-11-17 14:02:14'),
-(2, '', '0', '', '', 'afp@kpppa.com', '$2y$10$c/TVUDaT8CDMGyGzqm5fYODSks.Vw52oqQIDOU7aOOYXe8XQUbIa2', 'mas14MAILq', 'off', 'off', '2022-11-12 14:33:36', '2022-11-12 14:33:36'),
-(3, 'Anggota 1', '0', '', '', 'nu1@pusat.com', '$2y$10$bDIe4hUjM7V9M71q3oYSU.0xaCS526AsR.vUWZ8s2NjamNrLROHqK', 'Vh21gEoXYi', 'off', 'on', '2022-11-12 14:38:12', '2022-11-17 13:14:30'),
-(4, 'Bambang Soleh', '0871882738', '0871882738', '20221117210302.png', 'nu@pusat.com', '$2y$10$/yjv38GuZewUarOKS4Y/GOkyLNqCWH/woGC6sPHIr/mZcQMATUq9a', 'R8Vetz2cDN', 'off', 'on', '2022-11-17 12:22:48', '2022-11-17 14:21:17'),
+(2, '', '0', '', '', 'adminpusat@kpppa.co.id', '$2y$10$c/TVUDaT8CDMGyGzqm5fYODSks.Vw52oqQIDOU7aOOYXe8XQUbIa2', 'mas14MAILq', 'off', 'off', '2022-11-12 14:33:36', '2022-11-18 01:59:38'),
+(4, 'Bambang Soleh', '0871882738', '0871882738', '20221117210302.png', 'nupusat@kpppa.co.id', '$2y$10$/yjv38GuZewUarOKS4Y/GOkyLNqCWH/woGC6sPHIr/mZcQMATUq9a', 'R8Vetz2cDN', 'off', 'on', '2022-11-17 12:22:48', '2022-11-18 01:59:10'),
 (5, 'Pembina', '0', '', '20221117210214.jpg', 'pembina@kpppa.co.id', '$2y$10$c/TVUDaT8CDMGyGzqm5fYODSks.Vw52oqQIDOU7aOOYXe8XQUbIa2', '', 'on', 'on', '2022-11-02 10:50:33', '2022-11-17 14:02:14');
 
 --

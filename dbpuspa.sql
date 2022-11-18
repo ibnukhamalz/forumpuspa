@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2022 at 06:34 AM
+-- Generation Time: Nov 18, 2022 at 02:55 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.7
 
@@ -31,62 +31,64 @@ CREATE TABLE `enumeration` (
   `id` bigint(20) NOT NULL,
   `key` varchar(255) NOT NULL,
   `value` varchar(255) NOT NULL,
-  `keterangan` text NOT NULL
+  `keterangan` text NOT NULL,
+  `other` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `enumeration`
 --
 
-INSERT INTO `enumeration` (`id`, `key`, `value`, `keterangan`) VALUES
-(1, 'roles', 'Superadmin', '0'),
-(2, 'roles', 'Admin', '1'),
-(3, 'roles', 'Anggota', '2'),
-(4, 'forum', 'Pusat', ''),
-(5, 'forum', 'Provinsi', ''),
-(6, 'forum', 'Pemda', ''),
-(7, 'sasaran kegiatan', 'Pemerintah; pengambil kebijakan', ''),
-(8, 'sasaran kegiatan', 'Pemerintah; perencana kebijakan dan program', ''),
-(9, 'sasaran kegiatan', 'Pemerintah daerah', ''),
-(10, 'sasaran kegiatan', 'Desa', ''),
-(11, 'sasaran kegiatan', 'Pelaku Usaha', ''),
-(12, 'sasaran kegiatan', 'Lembaga Masyarakat', ''),
-(13, 'sasaran kegiatan', 'Institusi Pendidikan', ''),
-(14, 'sasaran kegiatan', 'Organisasi keagamaan', ''),
-(15, 'sasaran kegiatan', 'Organisasi Profesi', ''),
-(16, 'sasaran kegiatan', 'Dunia usaha', ''),
-(17, 'sasaran kegiatan', 'Media', ''),
-(18, 'sasaran kegiatan', 'Kelompok Masyarakat Umum', ''),
-(19, 'sasaran kegiatan', 'Kelompok Masyarakat Perempuan', ''),
-(20, 'sasaran kegiatan', 'Anak', ''),
-(21, 'sasaran kegiatan', 'Kelompok disabilitas', ''),
-(22, 'sasaran kegiatan', 'Kelompok marginal', 'lansia, masyarakat daerah tertinggal, terluar dsb'),
-(23, 'jenis entitas', 'Lembaga Masyarakat', ''),
-(24, 'jenis entitas', 'Institusi Pendidikan', ''),
-(25, 'jenis entitas', 'Organisasi Keagamaan', ''),
-(26, 'jenis entitas', 'Organisasi Profesi', ''),
-(27, 'jenis entitas', 'Dunia Usaha', ''),
-(28, 'jenis entitas', 'Media', ''),
-(29, 'jenis entitas', 'Lain-lain', 'tokoh agama, tokoh masyarakat'),
-(30, 'tujuan kegiatan', 'Pemberdayaan perempuan di bidang kewirausahaan yang berperspektif gender', ''),
-(31, 'tujuan kegiatan', 'Peran Ibu dan Keluarga dalam pendidikan/pengasuhan anak', ''),
-(32, 'tujuan kegiatan', 'Penurunan kekerasan terhadap perempuan dan anak', ''),
-(33, 'tujuan kegiatan', 'Penurunan angka pekerja anak', ''),
-(34, 'tujuan kegiatan', 'Pencegahan perkawinan anak', ''),
-(35, 'jenis kegiatan', 'Kajian/assessment', ''),
-(36, 'jenis kegiatan', 'Advokasi', ''),
-(37, 'jenis kegiatan', 'Sosialisasi/Promosi/Peningkatan Kesadaran', ''),
-(38, 'jenis kegiatan', 'Edukasi', ''),
-(39, 'jenis kegiatan', 'Pelatihan', ''),
-(40, 'jenis kegiatan', 'Pendampingan', ''),
-(41, 'jenis kegiatan', 'Evaluasi program', ''),
-(42, 'jenis kegiatan', 'Lain-lain', 'kampanye, pameran, dll'),
-(43, 'tahapan', 'Latar Belakang (permasalahan, kebutuhan, kondisi yang ada)', '1'),
-(44, 'tahapan', 'Perumusan Ide (solusi, pemikiran, pendekatan, inovasi)', '2'),
-(45, 'tahapan', 'Perencanaan', '3'),
-(46, 'tahapan', 'Pengembangan (persiapan, pembangunan, pengembangan)', '4'),
-(47, 'tahapan', 'Implementasi (eksekusi, penerapan)', '5'),
-(48, 'tahapan', 'Evaluasi', '6');
+INSERT INTO `enumeration` (`id`, `key`, `value`, `keterangan`, `other`) VALUES
+(1, 'roles', 'Superadmin', '0', ''),
+(2, 'roles', 'Admin', '1', ''),
+(3, 'roles', 'Anggota', '2', ''),
+(4, 'forum', 'Pusat', '', ''),
+(5, 'forum', 'Provinsi', '', ''),
+(6, 'forum', 'Pemda', '', ''),
+(7, 'sasaran kegiatan', 'Pemerintah; pengambil kebijakan', '', ''),
+(8, 'sasaran kegiatan', 'Pemerintah; perencana kebijakan dan program', '', ''),
+(9, 'sasaran kegiatan', 'Pemerintah daerah', '', ''),
+(10, 'sasaran kegiatan', 'Desa', '', ''),
+(11, 'sasaran kegiatan', 'Pelaku Usaha', '', ''),
+(12, 'sasaran kegiatan', 'Lembaga Masyarakat', '', ''),
+(13, 'sasaran kegiatan', 'Institusi Pendidikan', '', ''),
+(14, 'sasaran kegiatan', 'Organisasi keagamaan', '', ''),
+(15, 'sasaran kegiatan', 'Organisasi Profesi', '', ''),
+(16, 'sasaran kegiatan', 'Dunia usaha', '', ''),
+(17, 'sasaran kegiatan', 'Media', '', ''),
+(18, 'sasaran kegiatan', 'Kelompok Masyarakat Umum', '', ''),
+(19, 'sasaran kegiatan', 'Kelompok Masyarakat Perempuan', '', ''),
+(20, 'sasaran kegiatan', 'Anak', '', ''),
+(21, 'sasaran kegiatan', 'Kelompok disabilitas', '', ''),
+(22, 'sasaran kegiatan', 'Kelompok marginal', 'lansia, masyarakat daerah tertinggal, terluar dsb', ''),
+(23, 'jenis entitas', 'Lembaga Masyarakat', '', ''),
+(24, 'jenis entitas', 'Institusi Pendidikan', '', ''),
+(25, 'jenis entitas', 'Organisasi Keagamaan', '', ''),
+(26, 'jenis entitas', 'Organisasi Profesi', '', ''),
+(27, 'jenis entitas', 'Dunia Usaha', '', ''),
+(28, 'jenis entitas', 'Media', '', ''),
+(29, 'jenis entitas', 'Lain-lain', 'tokoh agama, tokoh masyarakat', ''),
+(30, 'tujuan kegiatan', 'Pemberdayaan perempuan di bidang kewirausahaan yang berperspektif gender', '', ''),
+(31, 'tujuan kegiatan', 'Peran Ibu dan Keluarga dalam pendidikan/pengasuhan anak', '', ''),
+(32, 'tujuan kegiatan', 'Penurunan kekerasan terhadap perempuan dan anak', '', ''),
+(33, 'tujuan kegiatan', 'Penurunan angka pekerja anak', '', ''),
+(34, 'tujuan kegiatan', 'Pencegahan perkawinan anak', '', ''),
+(35, 'jenis kegiatan', 'Kajian/assessment', '', ''),
+(36, 'jenis kegiatan', 'Advokasi', '', ''),
+(37, 'jenis kegiatan', 'Sosialisasi/Promosi/Peningkatan Kesadaran', '', ''),
+(38, 'jenis kegiatan', 'Edukasi', '', ''),
+(39, 'jenis kegiatan', 'Pelatihan', '', ''),
+(40, 'jenis kegiatan', 'Pendampingan', '', ''),
+(41, 'jenis kegiatan', 'Evaluasi program', '', ''),
+(42, 'jenis kegiatan', 'Lain-lain', 'kampanye, pameran, dll', ''),
+(43, 'tahapan', 'Latar Belakang (permasalahan, kebutuhan, kondisi yang ada)', '1', '15'),
+(44, 'tahapan', 'Perumusan Ide (solusi, pemikiran, pendekatan, inovasi)', '2', '15'),
+(45, 'tahapan', 'Perencanaan', '3', '15'),
+(46, 'tahapan', 'Pengembangan (persiapan, pembangunan, pengembangan)', '4', '20'),
+(47, 'tahapan', 'Implementasi (eksekusi, penerapan)', '5', '20'),
+(48, 'tahapan', 'Evaluasi', '6', '15'),
+(52, 'roles', 'Pembina', '3', '');
 
 -- --------------------------------------------------------
 
@@ -99,6 +101,7 @@ CREATE TABLE `kegiatan` (
   `mitra_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `jenis_kegiatan_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nama_singkat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nama_lengkap` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `foto` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `slug` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `deskripsi` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -107,11 +110,16 @@ CREATE TABLE `kegiatan` (
   `kebutuhan_sumberdaya` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sasaran` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status_tahapan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `keterangan_status_kegiatan` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `persentase_progres` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `analisis_resiko` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `keunikan` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `potensi` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `strategi_menjaga_keberlangsungan` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `indikator_keberhasilan` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `lampiran` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status_publikasi` int(11) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -120,9 +128,10 @@ CREATE TABLE `kegiatan` (
 -- Dumping data for table `kegiatan`
 --
 
-INSERT INTO `kegiatan` (`id`, `mitra_id`, `jenis_kegiatan_id`, `nama_singkat`, `foto`, `slug`, `deskripsi`, `tujuan_dan_manfaat`, `pihak_yang_terlibat`, `kebutuhan_sumberdaya`, `sasaran`, `status_tahapan`, `persentase_progres`, `analisis_resiko`, `strategi_menjaga_keberlangsungan`, `indikator_keberhasilan`, `lampiran`, `created_at`, `updated_at`) VALUES
-(1, '4', '37', '1', 'foto-kegiatan/2bzJT8334EupFhb40w759ex2OuEz2B0ObkjSQmsI.jpg', NULL, '1', '1', '1', '1', '1', '44', '10', '1', '1', '1', 'lampiran-kegiatan/K9c5Q4eWRnFemSjT7tdBSBwLP1TbUow179RSMIW4.jpg', '2022-11-02 10:58:06', '2022-11-05 05:25:57'),
-(2, '4', '40', '2', 'foto-kegiatan/aE5fpWCoHHf843dhrO7y3jxeOjhPPZSFnP9Q3x35.jpg', NULL, '2', '2', '2', '2', '2', '45', '2', '2', '2', '2', 'lampiran-kegiatan/LGN7y8EKDARMzYk8Aqj1s9JOTEqG89u2VyFUjYIY.jpg', '2022-11-02 10:58:31', '2022-11-05 05:25:59');
+INSERT INTO `kegiatan` (`id`, `mitra_id`, `jenis_kegiatan_id`, `nama_singkat`, `nama_lengkap`, `foto`, `slug`, `deskripsi`, `tujuan_dan_manfaat`, `pihak_yang_terlibat`, `kebutuhan_sumberdaya`, `sasaran`, `status_tahapan`, `keterangan_status_kegiatan`, `persentase_progres`, `analisis_resiko`, `keunikan`, `potensi`, `strategi_menjaga_keberlangsungan`, `indikator_keberhasilan`, `lampiran`, `url`, `status_publikasi`, `created_at`, `updated_at`) VALUES
+(4, '2', '35', 'KBM', 'Kegiatan Belajar Mengajar', '20221114173400.jpg', NULL, 'belajar mengajar didaerah untuk meningkatkan kualitas siswa', '[\"33\",\"34\"]', 'test', 'test', '[\"7\",\"19\",\"21\"]', '46', 'test', '50', 'e', 'test', 't', 's', 't', NULL, '', 0, '2022-11-13 16:21:58', '2022-11-17 21:54:26'),
+(5, '3', '39', 'Perlatihan IRT', 'Pelatihan Ibu-ibu rumah tangga', '20221117193339.jpeg', NULL, 'Pelatihan ibu-ibu rumah tangga yang berisi tentang pemanfaatan sosial media untuk pemasaran produk yang mereka buat (kerajinan, makanan, dll)', '[\"30\"]', 'Pemerintah daerah, Dinas, UKM', 'Anggaran untuk penyelenggaraan, lokasi penyelenggaraan, perangkat yang dibutuhkan', '[\"19\",\"21\"]', '45', 'Masih menunggu lengkapnya data-data peralatan yang diperlukan dari narasumber', '90', 'peserta kurang banyak dimitigasi dengan promosi yang baik dan waktu yang cukup untuk peserta mendaftarkan diri ', 'belum pernah dikerjakan berbarengan dengan disabilitas', 'dapat direplikasi didaerah lain dapat dikembangkan topik-topik pelatihan yang lain', 'dijarikan program pemerintah daerah yagn rutin sehingga anggaran disediakan setiap tahun', 'jumlah peserta, tingkat kepuasan dari peserta, evaluasi, outcome (kajian dampak) sesudah beberapa bulan', '20221117193339.pdf', '', 0, '2022-11-17 12:33:40', '2022-11-17 21:00:53'),
+(6, '3', '35', 'test', 'test', '20221117213133.jpeg', NULL, 'test', '[\"30\",\"32\",\"33\"]', 'test', 'test', '[\"13\",\"15\",\"19\"]', '43', 'test', '22', 'test', 'tes', 'test', 'test', 'test', NULL, '', 0, '2022-11-17 14:31:33', '2022-11-17 20:34:55');
 
 -- --------------------------------------------------------
 
@@ -132,12 +141,29 @@ INSERT INTO `kegiatan` (`id`, `mitra_id`, `jenis_kegiatan_id`, `nama_singkat`, `
 
 CREATE TABLE `komentar` (
   `id` bigint(11) NOT NULL,
-  `id_parent` bigint(11) NOT NULL,
-  `id_kegiatan` bigint(11) NOT NULL,
-  `id_user` bigint(11) NOT NULL,
+  `parent_id` bigint(11) NOT NULL,
+  `kegiatan_id` bigint(11) NOT NULL,
+  `user_id` bigint(11) NOT NULL,
   `komentar` text NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `read` int(11) NOT NULL DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `komentar`
+--
+
+INSERT INTO `komentar` (`id`, `parent_id`, `kegiatan_id`, `user_id`, `komentar`, `read`, `created_at`, `updated_at`) VALUES
+(30, 0, 4, 2, 'Mantaaap bos', 0, '2022-11-16 06:18:08', '2022-11-16 13:28:08'),
+(34, 30, 4, 3, 'siap pak', 0, '2022-11-16 14:43:57', '2022-11-16 21:43:57'),
+(35, 30, 4, 3, 'pembina', 0, '2022-11-16 14:46:16', '2022-11-16 21:46:16'),
+(36, 30, 4, 3, 'anggota baru', 0, '2022-11-16 14:46:27', '2022-11-16 21:46:27'),
+(37, 0, 5, 1, 'Harap deskripsi juga menjelaskan siapa saja pelatih yang terlibat dan uraian mengenai materi ajar', 0, '2022-11-17 12:37:24', '2022-11-17 19:37:24'),
+(38, 37, 5, 4, 'siap pak', 0, '2022-11-17 12:45:31', '2022-11-17 19:45:31'),
+(39, 37, 5, 4, 'sudah kami perbaiki, mohon diperiksa kembali terima kasih', 0, '2022-11-17 12:47:59', '2022-11-17 19:47:59'),
+(41, 37, 5, 1, 'Sudah bagus', 0, '2022-11-17 12:49:25', '2022-11-17 19:49:25'),
+(43, 0, 5, 4, 'test', 0, '2022-11-17 22:10:05', '2022-11-18 05:10:05');
 
 -- --------------------------------------------------------
 
@@ -147,20 +173,22 @@ CREATE TABLE `komentar` (
 
 CREATE TABLE `mitra` (
   `id` bigint(20) NOT NULL,
-  `id_parent` int(11) NOT NULL,
-  `nama_singkat` varchar(255) NOT NULL,
-  `nama_lengkap` varchar(255) NOT NULL,
-  `logo` varchar(255) DEFAULT NULL,
-  `kode_wilayah` int(11) NOT NULL,
-  `jenis_mitra` int(11) NOT NULL,
-  `website_mitra` varchar(255) NOT NULL,
-  `email_mitra` varchar(255) NOT NULL,
-  `alamat_mitra` varchar(255) NOT NULL,
-  `no_telp_mitra` varchar(15) NOT NULL,
+  `id_parent` int(11) DEFAULT NULL,
+  `nama_singkat` varchar(255) DEFAULT NULL,
+  `nama_lengkap` varchar(255) DEFAULT NULL,
+  `kode_wilayah` int(11) DEFAULT NULL,
+  `jenis_mitra` int(11) DEFAULT NULL,
+  `website_mitra` varchar(255) DEFAULT NULL,
+  `email_kontak` varchar(255) DEFAULT NULL,
+  `alamat_mitra` varchar(255) DEFAULT NULL,
+  `no_telp_mitra` varchar(15) DEFAULT NULL,
+  `no_wa_mitra` varchar(15) NOT NULL,
   `dasar_hukum` text DEFAULT NULL,
-  `rincian_kegiatan` text NOT NULL,
-  `permasalahan` text NOT NULL,
-  `kebutuhan` text NOT NULL,
+  `rincian_kegiatan` text DEFAULT NULL,
+  `permasalahan` text DEFAULT NULL,
+  `kebutuhan` text DEFAULT NULL,
+  `medsos` text DEFAULT NULL,
+  `url` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -169,11 +197,11 @@ CREATE TABLE `mitra` (
 -- Dumping data for table `mitra`
 --
 
-INSERT INTO `mitra` (`id`, `id_parent`, `nama_singkat`, `nama_lengkap`, `logo`, `kode_wilayah`, `jenis_mitra`, `website_mitra`, `email_mitra`, `alamat_mitra`, `no_telp_mitra`, `dasar_hukum`, `rincian_kegiatan`, `permasalahan`, `kebutuhan`, `created_at`, `updated_at`) VALUES
-(1, 0, 'Pusat', 'Pusat', '20221104183248.jpg', 1, 4, '4', 'adminpusat@kpppa.co.id', '1', '1', '20221104193632.pdf', '1', '11', '1', '2022-11-04 08:48:20', '2022-11-04 18:36:32'),
-(2, 1, 'NU PUSAT', 'Nahdlatul Ulama', '20221104173842.png', 1, 4, '1', 'test@test.com', '1', '1', NULL, '1', '11', '1', '2022-11-04 08:48:20', '2022-11-04 17:08:57'),
-(3, 0, 'Jabar', 'Jawa Barat', NULL, 1, 5, '1', '1', '1', '1', NULL, '1', '11', '1', '2022-11-04 08:48:20', '2022-11-04 17:08:54'),
-(4, 1, 'idgi', 'IKATAN DOKTER GIGI INDONESIA', '20221105032151.jpg', 1, 4, '0', 'idgi@gmail.com', 'IKATAN DOKTER GIGI INDONESIA', '0', NULL, '0', '0', '0', '2022-11-04 14:26:09', '2022-11-05 02:21:51');
+INSERT INTO `mitra` (`id`, `id_parent`, `nama_singkat`, `nama_lengkap`, `kode_wilayah`, `jenis_mitra`, `website_mitra`, `email_kontak`, `alamat_mitra`, `no_telp_mitra`, `no_wa_mitra`, `dasar_hukum`, `rincian_kegiatan`, `permasalahan`, `kebutuhan`, `medsos`, `url`, `created_at`, `updated_at`) VALUES
+(1, 0, 'Admin Forum Pusat', 'Admin Forum Pusat', NULL, 4, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-12 14:33:36', '2022-11-16 06:17:32'),
+(2, 1, 'A1', 'Anggota 12', NULL, 4, '', '', '', '0202', '0101', NULL, '', '', '', '{\"IG\":\"anggota1\"}', NULL, '2022-11-12 14:38:12', '2022-11-16 06:29:41'),
+(3, 1, 'NU PUSAT', 'Nahdlatul Ulama', NULL, 4, '', 'bambangsoleh@gmail.com', '', '', '', NULL, '', '', '', '{\"\":\"\"}', NULL, '2022-11-17 12:22:48', '2022-11-17 14:23:57'),
+(4, 0, 'Pembina', 'Pembina', NULL, NULL, '', NULL, '', '', '', NULL, '', '', '', '{\"\":\"\"}', NULL, '2022-11-17 12:22:48', '2022-11-17 22:13:10');
 
 -- --------------------------------------------------------
 
@@ -195,11 +223,11 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `user_id`, `mitra_id`, `role_id`, `created_at`, `updated_at`) VALUES
-(1, 8, 0, 1, '2022-11-04 08:54:33', '2022-11-04 10:01:50'),
-(2, 9, 1, 2, '2022-11-04 08:54:33', '2022-11-04 10:01:53'),
-(3, 12, 2, 3, '2022-11-04 08:54:37', '2022-11-04 10:01:54'),
-(5, 11, 3, 2, '2022-11-04 08:54:33', '2022-11-04 11:00:39'),
-(7, 13, 4, 3, '2022-11-04 14:26:09', '2022-11-04 14:26:09');
+(1, 1, 0, 1, '2022-11-12 14:22:10', '2022-11-18 01:55:19'),
+(2, 2, 1, 2, '2022-11-12 14:33:36', '2022-11-12 14:33:36'),
+(3, 3, 2, 3, '2022-11-12 14:38:12', '2022-11-12 14:38:12'),
+(4, 4, 3, 3, '2022-11-17 12:22:48', '2022-11-17 12:22:48'),
+(5, 1, 4, 52, '2022-11-12 14:22:10', '2022-11-18 01:55:17');
 
 -- --------------------------------------------------------
 
@@ -210,22 +238,28 @@ INSERT INTO `roles` (`id`, `user_id`, `mitra_id`, `role_id`, `created_at`, `upda
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `no_telp` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `no_wa` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `logo` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `token` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `verifikasi_email` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'off',
+  `verifikasi_akun` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'off',
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`, `updated_at`) VALUES
-(8, 'super admin', 'superadmin@kpppa.co.id', '$2y$10$U9.0Oxkeaa7mdocpCjRIpu5386jAlK.fFtCaXKfcDyEHQ0ruzJEjO', '2022-11-02 10:50:33', '2022-11-02 10:50:33'),
-(9, 'ibnu kamal', 'adminpusat@kpppa.co.id', '$2y$10$U9.0Oxkeaa7mdocpCjRIpu5386jAlK.fFtCaXKfcDyEHQ0ruzJEjO', '2022-11-02 10:50:33', '2022-11-02 10:50:33'),
-(11, 'zhia', 'adminpusat1@kpppa.co.id', '$2y$10$U9.0Oxkeaa7mdocpCjRIpu5386jAlK.fFtCaXKfcDyEHQ0ruzJEjO', '2022-11-02 10:50:33', '2022-11-02 10:50:33'),
-(12, 'NU', 'nu@kpppa.co.id', '$2y$10$U9.0Oxkeaa7mdocpCjRIpu5386jAlK.fFtCaXKfcDyEHQ0ruzJEjO', '2022-11-02 10:50:33', '2022-11-02 10:50:33'),
-(13, 'idgi', 'anggota@idgi.com', '$2y$10$SnnJHxucFheUyA6bnozwNOcJYEZVf1WqzpysvfymaS2ZRZCg8S4oy', NULL, NULL);
+INSERT INTO `users` (`id`, `name`, `no_telp`, `no_wa`, `logo`, `email`, `password`, `token`, `verifikasi_email`, `verifikasi_akun`, `created_at`, `updated_at`) VALUES
+(1, 'super admin', '0', '', '20221117210214.jpg', 'superadmin@kpppa.co.id', '$2y$10$c/TVUDaT8CDMGyGzqm5fYODSks.Vw52oqQIDOU7aOOYXe8XQUbIa2', '', 'on', 'on', '2022-11-02 10:50:33', '2022-11-17 14:02:14'),
+(2, '', '0', '', '', 'afp@kpppa.com', '$2y$10$c/TVUDaT8CDMGyGzqm5fYODSks.Vw52oqQIDOU7aOOYXe8XQUbIa2', 'mas14MAILq', 'off', 'off', '2022-11-12 14:33:36', '2022-11-12 14:33:36'),
+(3, 'Anggota 1', '0', '', '', 'nu1@pusat.com', '$2y$10$bDIe4hUjM7V9M71q3oYSU.0xaCS526AsR.vUWZ8s2NjamNrLROHqK', 'Vh21gEoXYi', 'off', 'on', '2022-11-12 14:38:12', '2022-11-17 13:14:30'),
+(4, 'Bambang Soleh', '0871882738', '0871882738', '20221117210302.png', 'nu@pusat.com', '$2y$10$/yjv38GuZewUarOKS4Y/GOkyLNqCWH/woGC6sPHIr/mZcQMATUq9a', 'R8Vetz2cDN', 'off', 'on', '2022-11-17 12:22:48', '2022-11-17 14:21:17'),
+(5, 'Pembina', '0', '', '20221117210214.jpg', 'pembina@kpppa.co.id', '$2y$10$c/TVUDaT8CDMGyGzqm5fYODSks.Vw52oqQIDOU7aOOYXe8XQUbIa2', '', 'on', 'on', '2022-11-02 10:50:33', '2022-11-17 14:02:14');
 
 --
 -- Indexes for dumped tables
@@ -278,37 +312,37 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `enumeration`
 --
 ALTER TABLE `enumeration`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `kegiatan`
 --
 ALTER TABLE `kegiatan`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `komentar`
 --
 ALTER TABLE `komentar`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `mitra`
 --
 ALTER TABLE `mitra`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

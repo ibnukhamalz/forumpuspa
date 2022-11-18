@@ -31,14 +31,14 @@
                     <div class="timeline-content">
                         <div class="row">
 
-                            <div class="col-sm-auto mb-2">
+                            <div class="col-sm-4 mb-2">
                                 <?php if ($qdetail->foto != "" and file_exists('berkas/foto-kegiatan/' . $qdetail->foto)) { ?>
                                     <img class="img-fluid" src="<?= base_url('berkas/foto-kegiatan/' . $qdetail->foto) ?>" alt="">
                                 <?php } else { ?>
                                 <?php } ?>
                             </div>
                             <?php $totalprogress = $newkegiatan->hitungprogress($qdetail->tahapan, $qdetail->persentase_progres) ?>
-                            <div class="col-sm-7 mb-2">
+                            <div class="col-sm-8 mb-2">
                                 <div class="blog-details">
                                     <h6>Deskripsi</h6>
                                     <div class="blog-bottom-content">
@@ -248,10 +248,15 @@
                                         <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="<?= $this->mview->logouser($valueLK->user_id); ?>" style="width: 50px; height: 50px; object-fit: cover;">
                                         <div class="media-body">
                                             <span class="f-w-600">
-                                                <?= $valueLK->namaforum ?>
                                                 <?php
+                                                $namakomentarforum = $this->manggota->getDataDetailByUser($valueLK->user_id);
+                                                if ($namakomentarforum != FALSE) {
+                                                    echo $namakomentarforum->nama_lengkap;
+                                                } else {
+                                                    echo $valueLK->namakontak;
+                                                }
                                                 if (in_array($valueLK->role_id, [3])) {
-                                                    echo "<small>(Pembina)</small>";
+                                                    echo "<small> (Pembina)</small>";
                                                 }
                                                 ?>
                                                 <span data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="<?= $valueLK->created_at ?>">- <?= $lamakomen; ?></span>
@@ -261,7 +266,7 @@
                                                     echo "<span>| Diubah</span>";
                                                 }
                                                 ?>
-                                                <?php if ($valueLK->mitra_id == $this->session->mitra_id) { ?>
+                                                <?php if ($valueLK->user_id == $this->session->user_id) { ?>
                                                     <div class="pull-right">
                                                         <ul class="list-unstyled card-option">
                                                             <li class="me-1">
@@ -341,7 +346,7 @@
                                     </div>
                                 </div>
 
-                                <?php $listkomentarsub = $this->mkegiatan->getDataKomentar($detailid, $valueLK->id); ?>
+                                <?php $listkomentarsub = $this->mkegiatan->getDataKomentar($detailid, $valueLK->id, $this->session->role_id); ?>
                                 <?php if ($listkomentarsub != FALSE) {   ?>
                                     <?php foreach ($listkomentarsub as $keyLKS => $valueLKS) { ?>
                                         <?php
@@ -373,10 +378,15 @@
                                                 <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="<?= $this->mview->logouser($valueLKS->user_id); ?>" style="width: 50px; height: 50px; object-fit: cover;">
                                                 <div class="media-body">
                                                     <span class="f-w-600">
-                                                        <?= $valueLKS->namaforum ?>
                                                         <?php
+                                                        $namakomentarforum = $this->manggota->getDataDetailByUser($valueLKS->user_id);
+                                                        if ($namakomentarforum != FALSE) {
+                                                            echo $namakomentarforum->nama_lengkap;
+                                                        } else {
+                                                            echo $valueLK->namakontak;
+                                                        }
                                                         if (in_array($valueLKS->role_id, [3])) {
-                                                            echo "<small>(Pembina)</small>";
+                                                            echo "<small> (Pembina)</small>";
                                                         }
                                                         ?>
                                                         <span data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="<?= $valueLKS->created_at ?>">- <?= $lamakomen; ?></span>
@@ -387,7 +397,7 @@
                                                         }
                                                         ?>
                                                         <div class="pull-right">
-                                                            <?php if ($valueLKS->mitra_id == $this->session->mitra_id) { ?>
+                                                            <?php if ($valueLKS->user_id == $this->session->user_id) { ?>
                                                                 <ul class="list-unstyled card-option">
                                                                     <li class="me-1">
                                                                         <span data-bs-toggle="modal" data-bs-target="#modaledit<?= $valueLKS->id ?>">
@@ -474,7 +484,7 @@
                         ?>
                             <div class="comments-box">
                                 <form action="<?= base_url('kegiatan/savekomen') ?>" method="post">
-                                    <div class="media"><img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="<?= $this->mview->logouser($this->session->user_id); ?>" style="width: 50px; height: 50px;">
+                                    <div class="media"><img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="<?= $this->mview->logouser($this->session->user_id); ?>" style="width: 50px; height: 50px; object-fit: cover;">
                                         <div class="media-body">
                                             <div class="input-group text-box">
                                                 <input type="hidden" name="link" value="<?= uri_string() ?>">

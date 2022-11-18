@@ -78,15 +78,15 @@
                     </div>
                 </div>
             </div>
-            <?php if (!in_array($this->session->role_id, [0, 3])) { ?>
-                <div class="col-xl-8">
-                    <form class="card" method="post" enctype="multipart/form-data">
-                        <div class="card-header py-4">
-                            <h4 class="card-title mb-0">Ubah Profil</h4>
-                            <div class="card-options"><a class="card-options-collapse" href="#" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a><a class="card-options-remove" href="#" data-bs-toggle="card-remove"><i class="fe fe-x"></i></a></div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
+            <div class="col-xl-8">
+                <form class="card" method="post" enctype="multipart/form-data">
+                    <div class="card-header py-4">
+                        <h4 class="card-title mb-0">Ubah Profil</h4>
+                        <div class="card-options"><a class="card-options-collapse" href="#" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a><a class="card-options-remove" href="#" data-bs-toggle="card-remove"><i class="fe fe-x"></i></a></div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <?php if (!in_array($this->session->role_id, [0, 3])) { ?>
                                 <input name="id" class="form-control" id="exampleFormControlInput1" type="hidden" value="<?= $cruddata->id ?? ''; ?>">
                                 <input name="formnya" class="form-control" id="exampleFormControlInput1" type="hidden" value="anggota">
                                 <div class="row">
@@ -253,45 +253,50 @@
                                             <?php echo form_error('lampiran', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
                                         </div>
                                     </div>
-                                    <div class="col-md-12 row mt-4">
-                                        <h5 class="mb-3">Data Kontak</h5>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="exampleFormControlInput1">Nama Kontak*</label>
-                                                <input name="name_user" class="form-control" id="exampleFormControlInput1" type="text" placeholder="Nama Kontak" value="<?= set_value('name_user', $userdata->name ?? ''); ?>">
-                                                <?php echo form_error('name_user', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
-                                            </div>
+                                <?php
+                            } else {
+                                echo '<input name="id" class="form-control" id="exampleFormControlInput1" type="hidden" value="' . ($userdata->id ?? '') . '">
+                                <input name="formnya" class="form-control" id="exampleFormControlInput1" type="hidden" value="biodatauser">';
+                            } ?>
+                                <div class="col-md-12 row mt-4">
+                                    <h5 class="mb-3">Data Kontak</h5>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="exampleFormControlInput1">Nama Kontak*</label>
+                                            <input name="name_user" class="form-control" id="exampleFormControlInput1" type="text" placeholder="Nama Kontak" value="<?= set_value('name_user', $userdata->name ?? ''); ?>">
+                                            <?php echo form_error('name_user', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="exampleFormControlInput1">Email Kontak</label>
-                                                <div class="input-group">
-                                                    <input name="email_kontak" class="form-control" id="exampleFormControlInput1" type="email_kontak" placeholder="name@example.com" value="<?= set_value('email_kontak', $cruddata->email_kontak ?? ''); ?>">
-                                                    <?php echo form_error('email_kontak', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="exampleFormControlInput1">No Telepon Kontak</label>
-                                                <div class="input-group">
-                                                    <span class="input-group-text"><i data-feather="phone"></i></span>
-                                                    <input name="no_telp" class="form-control" id="exampleFormControlInput1" type="text" placeholder="No Telepon Kontak" value="<?= set_value('no_telp', $userdata->no_telp ?? ''); ?>">
-                                                    <?php echo form_error('no_telp', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="exampleFormControlInput1">WhatsApp / Telegram Kontak</label>
-                                                <div class="input-group">
-                                                    <span class="input-group-text"><i data-feather="phone"></i></span>
-                                                    <input name="no_wa" class="form-control" id="exampleFormControlInput1" type="text" placeholder="WhatsApp / Telegram Kontak" value="<?= set_value('no_wa', $userdata->no_wa ?? ''); ?>">
-                                                    <?php echo form_error('no_wa', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
-                                                </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="exampleFormControlInput1">Email Kontak</label>
+                                            <div class="input-group">
+                                                <input name="email_kontak" class="form-control" id="exampleFormControlInput1" type="email_kontak" placeholder="name@example.com" value="<?= set_value('email_kontak', $cruddata->email_kontak ?? ''); ?>">
+                                                <?php echo form_error('email_kontak', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="exampleFormControlInput1">No Telepon Kontak</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i data-feather="phone"></i></span>
+                                                <input name="no_telp" class="form-control" id="exampleFormControlInput1" type="text" placeholder="No Telepon Kontak" value="<?= set_value('no_telp', $userdata->no_telp ?? ''); ?>">
+                                                <?php echo form_error('no_telp', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="exampleFormControlInput1">WhatsApp / Telegram Kontak</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i data-feather="phone"></i></span>
+                                                <input name="no_wa" class="form-control" id="exampleFormControlInput1" type="text" placeholder="WhatsApp / Telegram Kontak" value="<?= set_value('no_wa', $userdata->no_wa ?? ''); ?>">
+                                                <?php echo form_error('no_wa', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 </div>
 
                                 <div class="row">
@@ -312,14 +317,13 @@
                                         }
                                     </script>
                                 </div>
-                            </div>
                         </div>
-                        <div class="card-footer text-end py-4">
-                            <button class="btn btn-primary" type="submit">Perbaharui</button>
-                        </div>
-                    </form>
-                </div>
-            <?php } ?>
+                    </div>
+                    <div class="card-footer text-end py-4">
+                        <button class="btn btn-primary" type="submit">Perbaharui</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>

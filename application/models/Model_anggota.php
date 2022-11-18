@@ -10,6 +10,7 @@ class Model_anggota extends CI_Model
             ->select(
                 "mitra.*, 
                 users.id as user_id,
+                users.logo as logoforum,
                 users.name as kontak_person,
                 users.verifikasi_akun as onoff,
                 a.value as jenis_mitra,

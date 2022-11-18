@@ -86,6 +86,13 @@ class Welcome extends CI_Controller
 				'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT)
 			);
 			$this->mcrud->updateData("users", $data, $this->input->post('id'));
+		} else if ($formnya == "biodatauser") {
+			$data = array(
+				'name' => $this->input->post('name_user'),
+				'no_telp' => $this->input->post('no_telp'),
+				'no_wa' => $this->input->post('no_wa'),
+			);
+			$this->mcrud->updateData("users", $data, $this->input->post('id'));
 		} else {
 			$config = array(
 				'path' => "./berkas/dasarhukum/",

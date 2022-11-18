@@ -80,17 +80,26 @@ class Model_kegiatan extends CI_Model
 
         $where['komentar.kegiatan_id'] = $id;
         $data = $this->db
-            ->select(
-                "komentar.*,
-                mitra.id as mitra_id,
-                enumeration.keterangan as role_id,
-                mitra.nama_lengkap as namaforum"
-            )
+            ->select("komentar.*, enumeration.keterangan as role_id, users.name as namakontak")
             ->join("roles", "roles.user_id = komentar.user_id", "inner")
-            ->join("mitra", "mitra.id = roles.mitra_id", "inner")
+            ->join("users", "users.id = komentar.user_id", "inner")
             ->join("enumeration", "enumeration.id = roles.role_id", "inner")
             ->order_by('komentar.created_at', "ASC")
             ->get_where("komentar", $where);
+        // } else {
+        //     $data = $this->db
+        //         ->select(
+        //             "komentar.*,
+        //             mitra.id as mitra_id,
+        //             enumeration.keterangan as role_id,
+        //             mitra.nama_lengkap as namaforum"
+        //         )
+        //         ->join("roles", "roles.user_id = komentar.user_id", "inner")
+        //         ->join("mitra", "mitra.id = roles.mitra_id", "inner")
+        //         ->join("enumeration", "enumeration.id = roles.role_id", "inner")
+        //         ->order_by('komentar.created_at', "ASC")
+        //         ->get_where("komentar", $where);
+        // }
         return $data->result();
     }
 

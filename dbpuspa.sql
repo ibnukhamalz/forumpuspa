@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 18, 2022 at 02:59 AM
+-- Generation Time: Nov 18, 2022 at 04:22 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.7
 
@@ -130,8 +130,7 @@ CREATE TABLE `kegiatan` (
 
 INSERT INTO `kegiatan` (`id`, `mitra_id`, `jenis_kegiatan_id`, `nama_singkat`, `nama_lengkap`, `foto`, `slug`, `deskripsi`, `tujuan_dan_manfaat`, `pihak_yang_terlibat`, `kebutuhan_sumberdaya`, `sasaran`, `status_tahapan`, `keterangan_status_kegiatan`, `persentase_progres`, `analisis_resiko`, `keunikan`, `potensi`, `strategi_menjaga_keberlangsungan`, `indikator_keberhasilan`, `lampiran`, `url`, `status_publikasi`, `created_at`, `updated_at`) VALUES
 (4, '2', '35', 'KBM', 'Kegiatan Belajar Mengajar', '20221114173400.jpg', NULL, 'belajar mengajar didaerah untuk meningkatkan kualitas siswa', '[\"33\",\"34\"]', 'test', 'test', '[\"7\",\"19\",\"21\"]', '46', 'test', '50', 'e', 'test', 't', 's', 't', NULL, '', 0, '2022-11-13 16:21:58', '2022-11-17 21:54:26'),
-(5, '3', '39', 'Perlatihan IRT', 'Pelatihan Ibu-ibu rumah tangga', '20221117193339.jpeg', NULL, 'Pelatihan ibu-ibu rumah tangga yang berisi tentang pemanfaatan sosial media untuk pemasaran produk yang mereka buat (kerajinan, makanan, dll)', '[\"30\"]', 'Pemerintah daerah, Dinas, UKM', 'Anggaran untuk penyelenggaraan, lokasi penyelenggaraan, perangkat yang dibutuhkan', '[\"19\",\"21\"]', '45', 'Masih menunggu lengkapnya data-data peralatan yang diperlukan dari narasumber', '90', 'peserta kurang banyak dimitigasi dengan promosi yang baik dan waktu yang cukup untuk peserta mendaftarkan diri ', 'belum pernah dikerjakan berbarengan dengan disabilitas', 'dapat direplikasi didaerah lain dapat dikembangkan topik-topik pelatihan yang lain', 'dijarikan program pemerintah daerah yagn rutin sehingga anggaran disediakan setiap tahun', 'jumlah peserta, tingkat kepuasan dari peserta, evaluasi, outcome (kajian dampak) sesudah beberapa bulan', '20221117193339.pdf', '', 0, '2022-11-17 12:33:40', '2022-11-17 21:00:53'),
-(6, '3', '35', 'test', 'test', '20221117213133.jpeg', NULL, 'test', '[\"30\",\"32\",\"33\"]', 'test', 'test', '[\"13\",\"15\",\"19\"]', '43', 'test', '22', 'test', 'tes', 'test', 'test', 'test', NULL, '', 0, '2022-11-17 14:31:33', '2022-11-17 20:34:55');
+(5, '3', '39', 'Perlatihan IRT', 'Pelatihan Ibu-ibu rumah tangga', '20221117193339.jpeg', NULL, 'Pelatihan ibu-ibu rumah tangga yang berisi tentang pemanfaatan sosial media untuk pemasaran produk yang mereka buat (kerajinan, makanan, dll)', '[\"30\"]', 'Pemerintah daerah, Dinas, UKM', 'Anggaran untuk penyelenggaraan, lokasi penyelenggaraan, perangkat yang dibutuhkan', '[\"19\",\"21\"]', '45', 'Masih menunggu lengkapnya data-data peralatan yang diperlukan dari narasumber', '90', 'peserta kurang banyak dimitigasi dengan promosi yang baik dan waktu yang cukup untuk peserta mendaftarkan diri ', 'belum pernah dikerjakan berbarengan dengan disabilitas', 'dapat direplikasi didaerah lain dapat dikembangkan topik-topik pelatihan yang lain', 'dijarikan program pemerintah daerah yagn rutin sehingga anggaran disediakan setiap tahun', 'jumlah peserta, tingkat kepuasan dari peserta, evaluasi, outcome (kajian dampak) sesudah beberapa bulan', '20221117193339.pdf', '', 0, '2022-11-17 12:33:40', '2022-11-17 21:00:53');
 
 -- --------------------------------------------------------
 
@@ -159,10 +158,10 @@ INSERT INTO `komentar` (`id`, `parent_id`, `kegiatan_id`, `user_id`, `komentar`,
 (34, 30, 4, 3, 'siap pak', 0, '2022-11-16 14:43:57', '2022-11-16 21:43:57'),
 (35, 30, 4, 3, 'pembina', 0, '2022-11-16 14:46:16', '2022-11-16 21:46:16'),
 (36, 30, 4, 3, 'anggota baru', 0, '2022-11-16 14:46:27', '2022-11-16 21:46:27'),
-(37, 0, 5, 1, 'Harap deskripsi juga menjelaskan siapa saja pelatih yang terlibat dan uraian mengenai materi ajar', 0, '2022-11-17 12:37:24', '2022-11-17 19:37:24'),
+(37, 0, 5, 5, 'Harap deskripsi juga menjelaskan siapa saja pelatih yang terlibat dan uraian mengenai materi ajar', 0, '2022-11-17 12:37:24', '2022-11-18 10:10:08'),
 (38, 37, 5, 4, 'siap pak', 0, '2022-11-17 12:45:31', '2022-11-17 19:45:31'),
 (39, 37, 5, 4, 'sudah kami perbaiki, mohon diperiksa kembali terima kasih', 0, '2022-11-17 12:47:59', '2022-11-17 19:47:59'),
-(41, 37, 5, 1, 'Sudah bagus', 0, '2022-11-17 12:49:25', '2022-11-17 19:49:25'),
+(41, 37, 5, 5, 'Sudah bagus', 0, '2022-11-17 12:49:25', '2022-11-18 10:11:14'),
 (43, 0, 5, 4, 'test', 0, '2022-11-17 22:10:05', '2022-11-18 05:10:05');
 
 -- --------------------------------------------------------
@@ -200,8 +199,7 @@ CREATE TABLE `mitra` (
 INSERT INTO `mitra` (`id`, `id_parent`, `nama_singkat`, `nama_lengkap`, `kode_wilayah`, `jenis_mitra`, `website_mitra`, `email_kontak`, `alamat_mitra`, `no_telp_mitra`, `no_wa_mitra`, `dasar_hukum`, `rincian_kegiatan`, `permasalahan`, `kebutuhan`, `medsos`, `url`, `created_at`, `updated_at`) VALUES
 (1, 0, 'Admin Forum Pusat', 'Admin Forum Pusat', NULL, 4, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-12 14:33:36', '2022-11-16 06:17:32'),
 (2, 1, 'A1', 'Anggota 12', NULL, 4, '', '', '', '0202', '0101', NULL, '', '', '', '{\"IG\":\"anggota1\"}', NULL, '2022-11-12 14:38:12', '2022-11-16 06:29:41'),
-(3, 1, 'NU PUSAT', 'Nahdlatul Ulama', NULL, 4, '', 'bambangsoleh@gmail.com', '', '', '', NULL, '', '', '', '{\"\":\"\"}', NULL, '2022-11-17 12:22:48', '2022-11-17 14:23:57'),
-(4, 0, 'Pembina', 'Pembina', NULL, NULL, '', NULL, '', '', '', NULL, '', '', '', '{\"\":\"\"}', NULL, '2022-11-17 12:22:48', '2022-11-17 22:13:10');
+(3, 1, 'NU PUSAT', 'Nahdlatul Ulama', NULL, 4, '', 'bambangsoleh@gmail.com', '', '', '', NULL, '', '', '', '{\"\":\"\"}', NULL, '2022-11-17 12:22:48', '2022-11-17 14:23:57');
 
 -- --------------------------------------------------------
 
@@ -226,7 +224,7 @@ INSERT INTO `roles` (`id`, `user_id`, `mitra_id`, `role_id`, `created_at`, `upda
 (1, 1, 0, 1, '2022-11-12 14:22:10', '2022-11-18 01:55:19'),
 (2, 2, 1, 2, '2022-11-12 14:33:36', '2022-11-12 14:33:36'),
 (4, 4, 3, 3, '2022-11-17 12:22:48', '2022-11-17 12:22:48'),
-(5, 1, 4, 52, '2022-11-12 14:22:10', '2022-11-18 01:55:17');
+(5, 5, 4, 52, '2022-11-12 14:22:10', '2022-11-18 02:21:45');
 
 -- --------------------------------------------------------
 
@@ -257,7 +255,7 @@ INSERT INTO `users` (`id`, `name`, `no_telp`, `no_wa`, `logo`, `email`, `passwor
 (1, 'super admin', '0', '', '20221117210214.jpg', 'superadmin@kpppa.co.id', '$2y$10$c/TVUDaT8CDMGyGzqm5fYODSks.Vw52oqQIDOU7aOOYXe8XQUbIa2', '', 'on', 'on', '2022-11-02 10:50:33', '2022-11-17 14:02:14'),
 (2, '', '0', '', '', 'adminpusat@kpppa.co.id', '$2y$10$c/TVUDaT8CDMGyGzqm5fYODSks.Vw52oqQIDOU7aOOYXe8XQUbIa2', 'mas14MAILq', 'off', 'off', '2022-11-12 14:33:36', '2022-11-18 01:59:38'),
 (4, 'Bambang Soleh', '0871882738', '0871882738', '20221117210302.png', 'nupusat@kpppa.co.id', '$2y$10$/yjv38GuZewUarOKS4Y/GOkyLNqCWH/woGC6sPHIr/mZcQMATUq9a', 'R8Vetz2cDN', 'off', 'on', '2022-11-17 12:22:48', '2022-11-18 01:59:10'),
-(5, 'Pembina', '0', '', '20221117210214.jpg', 'pembina@kpppa.co.id', '$2y$10$c/TVUDaT8CDMGyGzqm5fYODSks.Vw52oqQIDOU7aOOYXe8XQUbIa2', '', 'on', 'on', '2022-11-02 10:50:33', '2022-11-17 14:02:14');
+(5, 'Budi Setiawan', '1', '', '20221117210214.jpg', 'pembina@kpppa.co.id', '$2y$10$c/TVUDaT8CDMGyGzqm5fYODSks.Vw52oqQIDOU7aOOYXe8XQUbIa2', '', 'on', 'on', '2022-11-02 10:50:33', '2022-11-18 03:20:37');
 
 --
 -- Indexes for dumped tables
@@ -322,7 +320,7 @@ ALTER TABLE `kegiatan`
 -- AUTO_INCREMENT for table `komentar`
 --
 ALTER TABLE `komentar`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `mitra`

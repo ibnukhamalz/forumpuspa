@@ -88,8 +88,8 @@
                                 $nourut = 1;
                                 foreach ($listdata as $keyLD => $valueLD) {
                                     $gambar = "template/assets/images/logo/logo.png";
-                                    if ($valueLD->logo != "") {
-                                        $gambar = "berkas/logo/" . $valueLD->logo;
+                                    if ($valueLD->logoforum != "") {
+                                        $gambar = "berkas/logo/" . $valueLD->logoforum;
                                     }
                                     if ($valueLD->jenis_mitra != "Pusat") {
                                         if ($valueLD->jenis_mitra == "Provinsi") {

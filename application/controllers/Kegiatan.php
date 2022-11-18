@@ -8,6 +8,7 @@ class Kegiatan extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('model_anggota', 'manggota');
         $this->load->model('model_kegiatan', 'mkegiatan');
         $this->load->model('model_enumeration', 'menum');
         $this->load->model('model_crud', 'mcrud');
@@ -44,7 +45,6 @@ class Kegiatan extends CI_Controller
         $data['newkegiatan'] = $this->mkegiatan;
         $data['newenum'] = $this->menum;
         $data['wherelist'] = $where;
-
         $this->load->view('layouts/main', $data);
     }
 
@@ -56,8 +56,12 @@ class Kegiatan extends CI_Controller
         $data['detailid'] = $id;
 
         $data['qdetail'] = $this->mkegiatan->getDataDetail($id);
+
+        if ($data['qdetail'] == FALSE) {
+            redirect('kegiatan');
+        }
         $data['newkegiatan'] = $this->mkegiatan;
-        $data['listkomentar'] = $this->mkegiatan->getDataKomentar($id, 0);
+        $data['listkomentar'] = $this->mkegiatan->getDataKomentar($id, 0, $this->session->role_id);
         $data['totalkomentar'] = $this->mkegiatan->getDataKomentar($id, "total");
 
         $this->load->view('layouts/main', $data);
@@ -195,6 +199,16 @@ class Kegiatan extends CI_Controller
         return $data;
     }
 
+    public function delete($id = null)
+    {
+        if ($id != null) {
+            $this->mcrud->deleteData("kegiatan", $id);
+            $this->mcrud->deleteDataWhere("komentar", ["kegiatan_id" => $id]);
+            redirect('kegiatan');
+        } else {
+            redirect('kegiatan');
+        }
+    }
     function cekerror($data)
     {
         echo "<pre>";

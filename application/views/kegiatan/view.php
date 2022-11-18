@@ -201,7 +201,10 @@
                         <div class="tab-pane fade" id="top-tahap<?= $i ?>" role="tabpanel" aria-labelledby="tahap<?= $i ?>-top-tab">
                             <div class="row">
                                 <?php
-                                $where = $wherelist . " AND e1.keterangan = '" . $i . "'";
+                                $where = "e1.keterangan = '" . $i . "'";
+                                if ($wherelist != "") {
+                                    $where = $wherelist . " AND e1.keterangan = '" . $i . "'";
+                                }
                                 ?>
                                 <?php foreach ($newkegiatan->getDataNew($where) as $keyNK => $valueNK) { ?>
                                     <?php $totalprogress = $newkegiatan->hitungprogress($valueNK->tahapan, $valueNK->persentase_progres) ?>

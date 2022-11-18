@@ -15,4 +15,9 @@ class Model_crud extends CI_Model
     {
         $this->db->delete($table, ["id" => $id]);
     }
+
+    public function deleteDataWhere($table, $where)
+    {
+        $this->db->delete($table, $where);
+    }
 }

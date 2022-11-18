@@ -11,7 +11,7 @@
                                 $logoforum = base_url('berkas/logo/' . $qdetail->logoforum);
                             }
                             ?>
-                            <img class="rounded-circle image-radius m-r-15" src="<?= $logoforum ?>" alt="">
+                            <img class="rounded-circle image-radius m-r-15" src="<?= $logoforum ?>" alt="" style="width: 55px; height: 55px; object-fit: cover;">
                             <div class="media-body">
                                 <h6 class="mb-0 f-w-700"><?= $qdetail->nama_lengkap ?></h6>
                                 <p><?= $qdetail->nama_singkat ?> - <?= $qdetail->namaforum ?></p>
@@ -31,9 +31,9 @@
                     <div class="timeline-content">
                         <div class="row">
 
-                            <div class="col-sm-5 mb-2">
+                            <div class="col-sm-auto mb-2">
                                 <?php if ($qdetail->foto != "" and file_exists('berkas/foto-kegiatan/' . $qdetail->foto)) { ?>
-                                    <img class="img-fluid sm-50-w" src="<?= base_url('berkas/foto-kegiatan/' . $qdetail->foto) ?>" alt="">
+                                    <img class="img-fluid" src="<?= base_url('berkas/foto-kegiatan/' . $qdetail->foto) ?>" alt="">
                                 <?php } else { ?>
                                 <?php } ?>
                             </div>
@@ -245,10 +245,15 @@
                                 ?>
                                 <div class="your-msg mb-3" id="komentarnya<?= $valueLK->id ?>">
                                     <div class="media">
-                                        <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="<?= $this->mview->logouser($valueLK->mitra_id); ?>">
+                                        <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="<?= $this->mview->logouser($valueLK->user_id); ?>" style="width: 50px; height: 50px; object-fit: cover;">
                                         <div class="media-body">
                                             <span class="f-w-600">
                                                 <?= $valueLK->namaforum ?>
+                                                <?php
+                                                if (in_array($valueLK->role_id, [3])) {
+                                                    echo "<small>(Pembina)</small>";
+                                                }
+                                                ?>
                                                 <span data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="<?= $valueLK->created_at ?>">- <?= $lamakomen; ?></span>
 
                                                 <?php
@@ -365,10 +370,15 @@
                                         ?>
                                         <div class="other-msg mb-3">
                                             <div class="media">
-                                                <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="<?= $this->mview->logouser($valueLKS->mitra_id); ?>">
+                                                <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="<?= $this->mview->logouser($valueLKS->user_id); ?>" style="width: 50px; height: 50px; object-fit: cover;">
                                                 <div class="media-body">
                                                     <span class="f-w-600">
                                                         <?= $valueLKS->namaforum ?>
+                                                        <?php
+                                                        if (in_array($valueLKS->role_id, [3])) {
+                                                            echo "<small>(Pembina)</small>";
+                                                        }
+                                                        ?>
                                                         <span data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="<?= $valueLKS->created_at ?>">- <?= $lamakomen; ?></span>
 
                                                         <?php
@@ -460,11 +470,11 @@
                             <?php } ?>
                         </div>
                         <?php
-                        if(!in_array($this->session->role_id, [1])){
-                            ?>
+                        if (!in_array($this->session->role_id, [1])) {
+                        ?>
                             <div class="comments-box">
                                 <form action="<?= base_url('kegiatan/savekomen') ?>" method="post">
-                                    <div class="media"><img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="<?= $this->mview->logouser($this->session->mitra_id); ?>">
+                                    <div class="media"><img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="<?= $this->mview->logouser($this->session->user_id); ?>" style="width: 50px; height: 50px;">
                                         <div class="media-body">
                                             <div class="input-group text-box">
                                                 <input type="hidden" name="link" value="<?= uri_string() ?>">
@@ -478,7 +488,7 @@
                                     </div>
                                 </form>
                             </div>
-                            <?php
+                        <?php
                         }
                         ?>
                     </div>

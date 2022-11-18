@@ -10,6 +10,9 @@ class Master extends CI_Controller
         parent::__construct();
         $this->load->model('model_crud', 'mcrud');
         $this->load->model('model_enumeration', 'menum');
+        if ($this->session->user_id == "") {
+            redirect('login');
+        }
     }
 
     public function index($sub = null)

@@ -101,7 +101,7 @@
 							</div>
 						</li>
 						<li class="onhover-dropdown p-0 me-0">
-							<div class="media profile-media"><img class="b-r-10" src="<?= $this->mview->logouser($this->session->mitra_id); ?>" alt="" width="30" height="30">
+							<div class="media profile-media"><img class="b-r-10" src="<?= $this->mview->logouser($this->session->user_id); ?>" alt="" width="30" height="30" style="object-fit: cover;">
 								<div class="media-body"><span><?= $this->session->email; ?></span>
 									<p class="mb-0 font-roboto"><?= $this->session->roles; ?> <i class="middle fa fa-angle-down"></i></p>
 								</div>

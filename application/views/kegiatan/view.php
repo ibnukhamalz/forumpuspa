@@ -28,25 +28,17 @@
                             <div class="card">
                                 <div class="card-header" id="headingOne">
                                     <h2 class="mb-0">
-                                        <button class="btn btn-link btn-block text-start" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Pencarian</button>
+                                        <button class="btn btn-link btn-block text-start" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Pencarian Data</button>
                                     </h2>
                                 </div>
-                                <!-- filter :
-                                - pencarian seluruh
-                                - tahapan
-                                - jenis kegiatan
-                                - anggota forum
-                                - jenis anggota forum (word yang baru)
-                                - tujuan anggota (word yang baru)
-                                - Sasaran Kegiatan (word yang baru) -->
-                                <div class="collapse show" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="collapse" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                     <form method="get">
                                         <div class="card-body filter-cards-view animate-chk">
                                             <div class="row">
                                                 <div class="job-filter col-md-4 mb-3">
                                                     <div class="faq-form">
-                                                        <div class="col-form-label">Seluruh</div>
-                                                        <input type="text" class="form-control" placeholder="Pencarian Seluruh" style="border: 1px solid #aaa; padding: 0.55rem 0.75rem;">
+                                                        <div class="col-form-label">Kata Kunci</div>
+                                                        <input type="text" class="form-control" placeholder="Kata Kunci" style="border: 1px solid #aaa; padding: 0.55rem 0.75rem;">
                                                     </div>
                                                 </div>
                                                 <div class="job-filter col-md-4 mb-3">
@@ -57,7 +49,9 @@
                                                             <?php
                                                             foreach ($newenum->getData("tahapan") as $keyL => $valueL) {
                                                                 echo "<option value='" . $valueL->id . "'";
-                                                                if($this->input->get('tahapan') == $valueL->id){ echo " selected"; }
+                                                                if ($this->input->get('tahapan') == $valueL->id) {
+                                                                    echo " selected";
+                                                                }
                                                                 echo ">" . $valueL->value . "</option>";
                                                             }
                                                             ?>
@@ -72,7 +66,9 @@
                                                             <?php
                                                             foreach ($newenum->getData("jenis kegiatan") as $keyL => $valueL) {
                                                                 echo "<option value='" . $valueL->id . "'";
-                                                                if($this->input->get('jenis_kegiatan') == $valueL->id){ echo " selected"; }
+                                                                if ($this->input->get('jenis_kegiatan') == $valueL->id) {
+                                                                    echo " selected";
+                                                                }
                                                                 echo ">" . $valueL->value . "</option>";
                                                             }
                                                             ?>
@@ -87,7 +83,9 @@
                                                             <?php
                                                             foreach ($newenum->getData("sasaran kegiatan") as $keyL => $valueL) {
                                                                 echo "<option value='" . $valueL->id . "'";
-                                                                if($this->input->get('sasaran_kegiatan') == $valueL->id){ echo " selected"; }
+                                                                if ($this->input->get('sasaran_kegiatan') == $valueL->id) {
+                                                                    echo " selected";
+                                                                }
                                                                 echo ">" . $valueL->value . "</option>";
                                                             }
                                                             ?>
@@ -102,7 +100,9 @@
                                                             <?php
                                                             foreach ($newenum->getData("jenis entitas") as $keyL => $valueL) {
                                                                 echo "<option value='" . $valueL->id . "'";
-                                                                if($this->input->get('jenis_anggota') == $valueL->id){ echo " selected"; }
+                                                                if ($this->input->get('jenis_anggota') == $valueL->id) {
+                                                                    echo " selected";
+                                                                }
                                                                 echo ">" . $valueL->value . "</option>";
                                                             }
                                                             ?>
@@ -117,7 +117,9 @@
                                                             <?php
                                                             foreach ($newenum->getData("tujuan Kegiatan") as $keyL => $valueL) {
                                                                 echo "<option value='" . $valueL->id . "'";
-                                                                if($this->input->get('tujuan_kegiatan') == $valueL->id){ echo " selected"; }
+                                                                if ($this->input->get('tujuan_kegiatan') == $valueL->id) {
+                                                                    echo " selected";
+                                                                }
                                                                 echo ">" . $valueL->value . "</option>";
                                                             }
                                                             ?>
@@ -132,8 +134,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </form>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -147,7 +149,10 @@
                 <div class="tab-content" id="top-tabContent">
                     <div class="tab-pane fade show active" id="top-semua" role="tabpanel" aria-labelledby="top-semua-tab">
                         <div class="row">
-                            <?php foreach ($newkegiatan->getDataNew() as $keyNK => $valueNK) { ?>
+                            <?php
+                            $where = $wherelist;
+                            ?>
+                            <?php foreach ($newkegiatan->getDataNew($where) as $keyNK => $valueNK) { ?>
                                 <?php $totalprogress = $newkegiatan->hitungprogress($valueNK->tahapan, $valueNK->persentase_progres) ?>
                                 <div class="col-xxl-4 col-lg-6">
                                     <div class="project-box"><span class="badge badge-primary">Tahap <?= $valueNK->tahapan ?></span>
@@ -155,33 +160,26 @@
                                         <div class="media">
                                             <div class="media-body">
                                                 <p>
-                                                    <?= $valueNK->namaforum ?>
+                                                    <?= $valueNK->namaforum ?> - <?= $valueNK->level ?>
                                                 </p>
                                             </div>
                                         </div>
                                         <p></p>
                                         <div class="row details">
-                                            <div class="col-6"><span>Perkembangan Tahapan</span></div>
-                                            <div class="col-6 text-primary"> <?= $valueNK->persentase_progres ?>% </div>
-                                            <div class="col-6"> <span>Total Progress</span></div>
-                                            <div class="col-6 text-primary"> <?= $totalprogress ?>%</div>
-                                            <div class="col-6"> <span>Komentar</span></div>
-                                            <div class="col-6 text-primary">2</div>
+                                            <div class="col-8"><span>Perkembangan Tahapan</span></div>
+                                            <div class="col-4 text-primary"> <?= $valueNK->persentase_progres ?>% </div>
+                                            <div class="col-8"> <span>Total Progress</span></div>
+                                            <div class="col-4 text-primary"> <?= $totalprogress ?>%</div>
+                                            <div class="col-8"> <span>Komentar</span></div>
+                                            <?php
+                                            $totalkomentar = $this->mkegiatan->getDataKomentar($valueNK->id, "total");
+                                            ?>
+                                            <div class="col-4 text-primary"><?= count($totalkomentar) ?></div>
                                         </div>
                                         <div>
-                                            <ul>
-                                                <li>
-                                                    <a class="btn btn-primary btn-sm" href="<?= base_url('kegiatan/detail/') . $valueNK->id ?>">Lihat</a>
-                                                </li>
-                                                <li>
-                                                    <a class="btn btn-warning btn-sm" href="<?= base_url('kegiatan/crud/') . $valueNK->id ?>"></i>Ubah</a>
-                                                </li>
-                                                <li>
-                                                    <form action="<?= base_url('kegiatan/delete/') . $valueNK->id ?>" method="POST">
-                                                        <button class="btn btn-danger btn-sm" type="submit"></i>Hapus</button>
-                                                    </form>
-                                                </li>
-                                            </ul>
+                                            <a class="btn btn-info btn-sm" href="<?= base_url('kegiatan/detail/') . $valueNK->id ?>">Lihat</a>
+                                            <a class="btn btn-primary btn-sm" href="<?= base_url('kegiatan/crud/') . $valueNK->id ?>"></i>Ubah</a>
+                                            <a class="btn btn-danger btn-sm" href="<?= base_url('kegiatan/delete/') . $valueNK->id ?>"></i>Hapus</a>
                                         </div>
                                         <div class="project-status mt-4">
                                             <div class="media mb-0">
@@ -194,7 +192,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <?php
+                            <?php
                             }
                             ?>
                         </div>
@@ -202,7 +200,10 @@
                     <?php for ($i = 1; $i <= 6; $i++) { ?>
                         <div class="tab-pane fade" id="top-tahap<?= $i ?>" role="tabpanel" aria-labelledby="tahap<?= $i ?>-top-tab">
                             <div class="row">
-                                <?php foreach ($newkegiatan->getDataNew($i) as $keyNK => $valueNK) { ?>
+                                <?php
+                                $where = $wherelist . " AND e1.keterangan = '" . $i . "'";
+                                ?>
+                                <?php foreach ($newkegiatan->getDataNew($where) as $keyNK => $valueNK) { ?>
                                     <?php $totalprogress = $newkegiatan->hitungprogress($valueNK->tahapan, $valueNK->persentase_progres) ?>
                                     <div class="col-xxl-4 col-lg-6">
                                         <div class="project-box">
@@ -250,7 +251,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <?php
+                                <?php
                                 }
                                 ?>
                             </div>
@@ -285,7 +286,7 @@
                                     $nourut = 1;
                                     foreach ($listdata as $keyLD => $valueLD) {
                                         $totalprogress = $newkegiatan->hitungprogress($valueLD->tahapan, $valueLD->persentase_progres);
-                                        ?>
+                                    ?>
                                         <tr>
                                             <td><?= $nourut++ ?></td>
                                             <td><?= $valueLD->nama_singkat ?></td>
@@ -293,7 +294,7 @@
                                             <td style="text-align: center"><?= $valueLD->persentase_progres ?>% </td>
                                             <td style="text-align: center"><?= $totalprogress ?>%</td>
                                             <td style="text-align: center; white-space: nowrap;">
-                                                    <!-- <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                                <!-- <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                                                         <div class="btn-group" role="group">
                                                             <button class="btn btn-primary dropdown-toggle" id="btnGroupDrop1" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Setting</button>
                                                             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
@@ -312,30 +313,30 @@
                                                             </div>
                                                         </div>
                                                     </div> -->
-                                                    <ul>
-                                                        <li>
-                                                            <a class="btn btn-info btn-xs mt-1" style="font-weight:500;" href="<?= base_url('kegiatan/detail/' . $valueLD->id); ?>">Lihat</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="btn btn-primary btn-xs mt-1" style="font-weight:500;" href="<?= base_url('kegiatan/crud/' . $valueLD->id); ?>">Ubah</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="btn btn-danger btn-xs mt-1" style="font-weight:500;" href="<?= base_url('kegiatan/delete/' . $valueLD->id); ?>">Hapus</a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                        <?php } ?>
-                                    </tbody>
-                                </table>
-                            </div>
+                                                <ul>
+                                                    <li>
+                                                        <a class="btn btn-info btn-xs mt-1" style="font-weight:500;" href="<?= base_url('kegiatan/detail/' . $valueLD->id); ?>">Lihat</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="btn btn-primary btn-xs mt-1" style="font-weight:500;" href="<?= base_url('kegiatan/crud/' . $valueLD->id); ?>">Ubah</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="btn btn-danger btn-xs mt-1" style="font-weight:500;" href="<?= base_url('kegiatan/delete/' . $valueLD->id); ?>">Hapus</a>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Zero Configuration  Ends-->
         </div>
+        <!-- Zero Configuration  Ends-->
     </div>
-    <!-- Container-fluid Ends-->
+</div>
+<!-- Container-fluid Ends-->
 </div>
 </div>

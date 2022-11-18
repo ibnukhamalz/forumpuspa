@@ -23,7 +23,7 @@ class Welcome extends CI_Controller
 		$kontakperson = $this->db->get_where("users", ["id" => $this->session->user_id])->row();
 		$totalall = 1;
 		$terisi = 0;
-		if(in_array($this->session->role_id, [1,2])){
+		if (in_array($this->session->role_id, [1, 2])) {
 			$cek = $this->db->get_where("mitra", ["id" => $this->session->mitra_id])->row();
 			if ($this->session->role_id != 0) {
 
@@ -59,7 +59,8 @@ class Welcome extends CI_Controller
 				);
 				$uploadlogo = $this->uploadfile($config, "logo");
 				if ($uploadlogo['status'] == 1) {
-					$this->db->update("mitra", ["logo" => $uploadlogo['file_name']], ["id" => $this->session->mitra_id]);
+					$this->db->update("users", ["logo" => $uploadlogo['file_name']], ["id" => $this->session->user_id]);
+					redirect('welcome/myprofile');
 				}
 			}
 			$this->viewprofile();
@@ -105,8 +106,8 @@ class Welcome extends CI_Controller
 				'nama_singkat' => $this->input->post('nama_singkat'),
 				'nama_lengkap' => ucwords(strtolower($this->input->post('nama_lengkap'))),
 				'no_telp_mitra' => $this->input->post('no_telp_mitra'),
-				'no_wa' => $this->input->post('no_wa'),
-				'email_mitra' => strtolower($this->input->post('email_mitra')),
+				'no_wa_mitra' => $this->input->post('no_wa_mitra'),
+				'email_kontak' => strtolower($this->input->post('email_kontak')),
 				'website_mitra' => strtolower($this->input->post('website_mitra')),
 				'alamat_mitra' => $this->input->post('alamat_mitra'),
 				'rincian_kegiatan' => $this->input->post('rincian_kegiatan'),
@@ -116,8 +117,14 @@ class Welcome extends CI_Controller
 			if ($uploaddasarhukum['status'] == true) {
 				$data['dasar_hukum'] = $uploaddasarhukum['file_name'];
 			}
-			$this->mcrud->updateData("users", ["name" => ucwords(strtolower($this->input->post('name_user')))], $this->session->user_id);
 			$this->mcrud->updateData("mitra", $data, $this->input->post('id'));
+
+			$dataUser = array(
+				'name' => $this->input->post('name_user'),
+				'no_telp' => $this->input->post('no_telp'),
+				'no_wa' => $this->input->post('no_wa'),
+			);
+			$this->mcrud->updateData("users", $dataUser, $this->session->user_id);
 		}
 
 		$this->session->set_flashdata("notif", ["icon" => "success", "title" => "Berhasil", "pesan" => "Data Berhasil diperbaharui ..."]);

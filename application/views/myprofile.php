@@ -16,7 +16,7 @@
                                     <div class="profile-title">
                                         <div class="media">
                                             <div>
-                                                <img class="img-70 rounded-circle" alt="" src="<?= $this->mview->logouser($this->session->mitra_id); ?>" style="border: 2px solid; height:70px">
+                                                <img class="img-70 rounded-circle" alt="" src="<?= $this->mview->logouser($this->session->user_id); ?>" style="border: 2px solid; height:70px; object-fit: cover;">
                                                 <div class="icon-wrapper" style="position: absolute; top:0; background-color: white; border-radius:50%; padding:5px; box-shadow: 0 0 6px 3px rgb(68 102 242 / 20%); cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modalfotoprofile">
                                                     <i class="icofont icofont-pencil-alt-5"></i>
                                                 </div>
@@ -63,7 +63,7 @@
                                 </div>
                                 <form action="<?= base_url("welcome/myprofile/savefoto") ?>" method="post" enctype="multipart/form-data">
                                     <div class="modal-body pb-0">
-                                        <input name="logo" class="form-control" id="exampleFormControlInput1" type="file">
+                                        <input name="logo" class="form-control" id="exampleFormControlInput1" type="file" required>
                                         <label class="form-label" for="exampleFormControlInput1">
                                             <small>File : JPG, PNG | Max Size : 5M</small>
                                         </label>
@@ -78,7 +78,7 @@
                     </div>
                 </div>
             </div>
-            <?php if (!in_array($this->session->role_id, [0,3])) { ?>
+            <?php if (!in_array($this->session->role_id, [0, 3])) { ?>
                 <div class="col-xl-8">
                     <form class="card" method="post" enctype="multipart/form-data">
                         <div class="card-header py-4">
@@ -106,15 +106,6 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="exampleFormControlInput1">Nama Kontak*</label>
-                                            <input name="name_user" class="form-control" id="exampleFormControlInput1" type="text" placeholder="Nama Kontak" value="<?= set_value('name_user', $cruddata->name_user ?? ''); ?>">
-                                            <?php echo form_error('name_user', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label" for="exampleFormControlInput1">No Telepon</label>
@@ -130,18 +121,8 @@
                                             <label class="form-label" for="exampleFormControlInput1">WhatsApp / Telegram</label>
                                             <div class="input-group">
                                                 <span class="input-group-text"><i data-feather="phone"></i></span>
-                                                <input name="no_wa" class="form-control" id="exampleFormControlInput1" type="text" placeholder="WhatsApp / Telegram" value="<?= set_value('no_wa', $cruddata->no_wa ?? ''); ?>">
-                                                <?php echo form_error('no_wa', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="exampleFormControlInput1">Email</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text"><i data-feather="mail"></i></span>
-                                                <input name="email_mitra" class="form-control" id="exampleFormControlInput1" type="email" placeholder="Email" value="<?= set_value('email_mitra', $cruddata->email_mitra ?? ''); ?>">
-                                                <?php echo form_error('email_mitra', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
+                                                <input name="no_wa_mitra" class="form-control" id="exampleFormControlInput1" type="text" placeholder="WhatsApp / Telegram" value="<?= set_value('no_wa_mitra', $cruddata->no_wa_mitra ?? ''); ?>">
+                                                <?php echo form_error('no_wa_mitra', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -236,7 +217,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label class="form-label" for="exampleFormControlInput1">Dasar Hukum (File : PDF | Max Size : 5M)</label>
+                                            <label class="form-label" for="exampleFormControlInput1">Lampiran (File : PDF | Max Size : 5M)</label>
                                             <input name="dasar_hukum" class="form-control" id="exampleFormControlInput1" type="file">
                                         </div>
                                         <?php if ($cruddata->dasar_hukum != "" and file_exists('berkas/dasarhukum/' . $cruddata->dasar_hukum)) { ?>
@@ -246,7 +227,7 @@
                                                         <li class="file-box" style="width: auto">
                                                             <div class="file-top"> <i class="fa fa-file-image-o txt-primary"></i><i class="fa fa-ellipsis-v f-14 ellips"></i></div>
                                                             <div class="file-bottom">
-                                                                <h6>Dasar Hukum </h6>
+                                                                <h6>Lampiran </h6>
                                                                 <p class="mb-1">
                                                                     <?php
                                                                     $filesize = filesize('berkas/dasarhukum/' . $cruddata->dasar_hukum);
@@ -256,7 +237,7 @@
                                                                     } else {
                                                                         echo number_format($sisa, 2) . " KB";
                                                                     }
-                                                                ?></p>
+                                                                    ?></p>
                                                                 <p> <b>lihat : </b><a href="<?= base_url('berkas/dasarhukum/' . $cruddata->dasar_hukum) ?>" target="_blank">Link</a></p>
                                                             </div>
                                                         </li>
@@ -265,22 +246,68 @@
                                             </div>
                                         <?php } ?>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="exampleFormControlInput1">Lampiran (Url)</label>
+                                            <input name="lampiran" class="form-control" id="exampleFormControlInput1" type="text" name="nama_singkat" placeholder="http://domain.com" value="<?= set_value('lampiran', $cruddata->lampiran ?? ''); ?>">
+                                            <?php echo form_error('lampiran', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 row mt-4">
+                                        <h5 class="mb-3">Data Kontak</h5>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="exampleFormControlInput1">Nama Kontak*</label>
+                                                <input name="name_user" class="form-control" id="exampleFormControlInput1" type="text" placeholder="Nama Kontak" value="<?= set_value('name_user', $userdata->name ?? ''); ?>">
+                                                <?php echo form_error('name_user', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="exampleFormControlInput1">Email Kontak</label>
+                                                <div class="input-group">
+                                                    <input name="email_kontak" class="form-control" id="exampleFormControlInput1" type="email_kontak" placeholder="name@example.com" value="<?= set_value('email_kontak', $cruddata->email_kontak ?? ''); ?>">
+                                                    <?php echo form_error('email_kontak', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="exampleFormControlInput1">No Telepon Kontak</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text"><i data-feather="phone"></i></span>
+                                                    <input name="no_telp" class="form-control" id="exampleFormControlInput1" type="text" placeholder="No Telepon Kontak" value="<?= set_value('no_telp', $userdata->no_telp ?? ''); ?>">
+                                                    <?php echo form_error('no_telp', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="exampleFormControlInput1">WhatsApp / Telegram Kontak</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text"><i data-feather="phone"></i></span>
+                                                    <input name="no_wa" class="form-control" id="exampleFormControlInput1" type="text" placeholder="WhatsApp / Telegram Kontak" value="<?= set_value('no_wa', $userdata->no_wa ?? ''); ?>">
+                                                    <?php echo form_error('no_wa', '<div class="invalid-feedback" style="display:block">', '</div>'); ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="row">
                                     <script>
                                         function medsos() {
                                             var html = "<div class='row mb-1'>" +
-                                            "<div class='col-md-2'>" +
-                                            "<a href=\"javascript:;\" onclick=\"$(this).parent().parent().remove();\" class='btn btn-danger'>Hapus</a>" +
-                                            "</div>" +
-                                            "<div class='col-md-4'>" +
-                                            "<input type='text' name='medsos[]' class='form-control' placeholder='IG/FB/TWITTER'>" +
-                                            "</div>" +
-                                            "<div class='col-md-6'>" +
-                                            "<input type='text' name='medsosakun[]' class='form-control' placeholder='@kppa'>" +
-                                            "</div>" +
-                                            "</div>";
+                                                "<div class='col-md-2'>" +
+                                                "<a href=\"javascript:;\" onclick=\"$(this).parent().parent().remove();\" class='btn btn-danger'>Hapus</a>" +
+                                                "</div>" +
+                                                "<div class='col-md-4'>" +
+                                                "<input type='text' name='medsos[]' class='form-control' placeholder='IG/FB/TWITTER'>" +
+                                                "</div>" +
+                                                "<div class='col-md-6'>" +
+                                                "<input type='text' name='medsosakun[]' class='form-control' placeholder='@kppa'>" +
+                                                "</div>" +
+                                                "</div>";
                                             $("#medsos").append(html);
                                         }
                                     </script>

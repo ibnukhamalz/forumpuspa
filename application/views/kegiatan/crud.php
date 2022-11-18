@@ -198,8 +198,19 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label class="form-label" for="exampleFormControlInput1">Lampiran</label>
+                                        <label class="form-label" for="exampleFormControlInput1">Lampiran (File : PDF | Max Size : 5M)</label>
                                         <input name="lampiran" class="form-control" id="exampleFormControlInput1" type="file">
+                                        <input name="url" class="form-control mt-2" id="exampleFormControlInput1" type="text" placeholder="Lampiran (url)">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="exampleFormControlInput1">&nbsp;</label>
+                                        <label class='d-block' for='chk-an'>
+                                            <?php if ($cruddata->status_publikasi ?? '' == 1) $select = true; ?>
+                                            <input class='checkbox_animated' id='chk-an' type='checkbox' name='status_publikasi' value='1' <?= set_checkbox('status_publikasi', 1 ?? '', $select) ?>>
+                                            Status Publikasi
+                                        </label>
                                     </div>
                                 </div>
                             </div>

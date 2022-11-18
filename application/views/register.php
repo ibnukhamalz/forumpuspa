@@ -76,13 +76,13 @@
                                     <?php if (!in_array("pusat", $role)) { ?>
                                         <?php
                                         $detaildaerah = "";
-                                        if(in_array("provinsi", $role)){
+                                        if (in_array("provinsi", $role)) {
                                             $detaildaerah = "prov";
                                         }
                                         ?>
                                         <div class="form-group">
                                             <label class="col-form-label pt-0">Provinsi</label>
-                                            <select class="select2filter col-sm-12 form-control" name="kode_wilayah" onchange="kabupatenkota(this.value, <?=$detaildaerah;?>);">
+                                            <select class="select2filter col-sm-12 form-control" name="kode_wilayah" onchange="kabupatenkota(this.value, '<?= $detaildaerah; ?>');">
                                                 <option value></option>
                                                 <?php
                                                 foreach ($qprovinsi as $keyQp => $valueQp) {
@@ -171,7 +171,7 @@
                         status: detail
                     },
                     success: function(msg) {
-                        if(detail != "prov" && detail != "kabkot"){
+                        if (detail != "prov" && detail != "kabkot") {
                             var kabkot = JSON.parse(msg);
                             var cekarray = Array.isArray(kabkot);
                             var tampilin = "<option value></option>";
@@ -194,7 +194,7 @@
                             str = str.toLowerCase().replace(/^[\u00C0-\u1FFF\u2C00-\uD7FF\w]|\s[\u00C0-\u1FFF\u2C00-\uD7FF\w]/g, function(letter) {
                                 return letter.toUpperCase();
                             });
-                            document.getElementById('namalengkapforum').value = "<?=$valuenamaasingkat;?>"+str;
+                            document.getElementById('namalengkapforum').value = "<?= $valuenamaasingkat; ?>" + str;
                         }
                     }
                 });

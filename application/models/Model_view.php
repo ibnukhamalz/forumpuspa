@@ -5,7 +5,7 @@ class Model_view extends CI_Model
     {
         $logo = base_url('template/assets/images/logo/user1.png');
         if ($id != null) {
-            $data = $this->db->get_where("mitra", ["id" => $id])->row();
+            $data = $this->db->get_where("users", ["id" => $id])->row();
             if ($data->logo != '' and file_exists('berkas/logo/' . $data->logo)) {
                 $logo = base_url('berkas/logo/' . $data->logo);
             } else {

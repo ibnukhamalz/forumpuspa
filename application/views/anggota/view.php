@@ -12,56 +12,54 @@
                                     </h2>
                                 </div>
                                 <div class="collapse" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                    <form method="get">
-                                        <div class="card-body filter-cards-view animate-chk">
-                                            <div class="row">
-                                                <div class="job-filter col-md-6 mb-3">
-                                                    <div class="faq-form">
-                                                        <div class="col-form-label">Level Forum</div>
-                                                        <select class="select2filter col-sm-12">
-                                                            <option value></option>
-                                                            <?php
-                                                            foreach ($qlevelf as $keyQl => $valueQl) {
-                                                                if ($valueQl->value != "Superadmin") {
-                                                                    echo "<option value='" . $valueQl->id . "'>" . $valueQl->value . "</option>";
-                                                                }
+                                    <div class="card-body filter-cards-view animate-chk">
+                                        <div class="row">
+                                            <div class="job-filter col-md-6 mb-3">
+                                                <div class="faq-form">
+                                                    <div class="col-form-label">Level Forum</div>
+                                                    <select class="select2filter col-sm-12">
+                                                        <option value></option>
+                                                        <?php
+                                                        foreach ($qlevelf as $keyQl => $valueQl) {
+                                                            if ($valueQl->value != "Superadmin") {
+                                                                echo "<option value='" . $valueQl->id . "'>" . $valueQl->value . "</option>";
                                                             }
-                                                            ?>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="job-filter col-md-6 mb-3">
-                                                    <div class="faq-form">
-                                                        <div class="col-form-label">Wilayah</div>
-                                                        <select class="select2filter col-sm-12">
-                                                            <option value></option>
-                                                            <option value="AL">Alabama</option>
-                                                            <option value="WY">Wyoming</option>
-                                                            <option value="WY">Coming</option>
-                                                            <option value="WY">Hanry Die</option>
-                                                            <option value="WY">John Doe</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="job-filter col-md-6 mb-3">
-                                                    <div class="faq-form">
-                                                        <div class="col-form-label">Level User</div>
-                                                        <select class="select2filter col-sm-12">
-                                                            <option value></option>
-                                                            <?php
-                                                            foreach ($qlevelu as $keyQl => $valueQl) {
-                                                                if ($valueQl->value != "Superadmin") {
-                                                                    echo "<option value='" . $valueQl->id . "'>" . $valueQl->value . "</option>";
-                                                                }
-                                                            }
-                                                            ?>
-                                                        </select>
-                                                    </div>
+                                                        }
+                                                        ?>
+                                                    </select>
                                                 </div>
                                             </div>
-                                            <button class="btn btn-primary text-center" type="submit">Telusuri</button>
+                                            <div class="job-filter col-md-6 mb-3">
+                                                <div class="faq-form">
+                                                    <div class="col-form-label">Wilayah</div>
+                                                    <select class="select2filter col-sm-12">
+                                                        <option value></option>
+                                                        <option value="AL">Alabama</option>
+                                                        <option value="WY">Wyoming</option>
+                                                        <option value="WY">Coming</option>
+                                                        <option value="WY">Hanry Die</option>
+                                                        <option value="WY">John Doe</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="job-filter col-md-6 mb-3">
+                                                <div class="faq-form">
+                                                    <div class="col-form-label">Level User</div>
+                                                    <select class="select2filter col-sm-12">
+                                                        <option value></option>
+                                                        <?php
+                                                        foreach ($qlevelu as $keyQl => $valueQl) {
+                                                            if ($valueQl->value != "Superadmin") {
+                                                                echo "<option value='" . $valueQl->id . "'>" . $valueQl->value . "</option>";
+                                                            }
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </form>
+                                        <button class="btn btn-primary text-center" type="button">Find jobs</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -102,7 +100,7 @@
                                         }
                                         $daerahnya = json_decode($this->api->daerah($wheredaerah, $valueLD->kode_wilayah));
                                     }
-                                    ?>
+                                ?>
                                     <tr>
                                         <td align="center"><?= $nourut++ ?></td>
                                         <td>
@@ -126,7 +124,7 @@
                                             <a href="<?= base_url('anggota/delete') ?>" class="btn btn-danger btn-xs">Hapus</a>
                                         </td>
                                     </tr>
-                                    <?php
+                                <?php
                                 }
                                 ?>
                             </tbody>

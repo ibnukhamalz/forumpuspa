@@ -11,6 +11,9 @@ class Kegiatan extends CI_Controller
         $this->load->model('model_kegiatan', 'mkegiatan');
         $this->load->model('model_enumeration', 'menum');
         $this->load->model('model_crud', 'mcrud');
+        if ($this->session->user_id == "") {
+            redirect('login');
+        }
     }
 
     public function index()
@@ -18,28 +21,29 @@ class Kegiatan extends CI_Controller
         $data['title'] = $this->title;
         $data['subtitle'] = "View";
         $data['container'] = "kegiatan/view";
+
         $where = array();
         switch ($this->session->role_id) {
             case 0:
-            $where = [];
-            break;
-            
+                $where = "";
+                break;
+
             case 3:
-            $where = [];
-            break;
+                $where = "";
+                break;
 
             case 1:
-            $where = ["mitra.id_parent" => $this->session->mitra_id];
-            break;
+                $where = "(m1.id_parent = '" . $this->session->mitra_id . "' OR status_publikasi = 1)";
+                break;
 
             default:
-            $where = ["mitra_id" => $this->session->mitra_id];
-            break;
+                $where = "(m1.id = '" . $this->session->mitra_id . "' OR status_publikasi = 1)";
+                break;
         }
-
         $data['listdata'] = $this->mkegiatan->getData($where);
         $data['newkegiatan'] = $this->mkegiatan;
         $data['newenum'] = $this->menum;
+        $data['wherelist'] = $where;
 
         $this->load->view('layouts/main', $data);
     }
@@ -62,13 +66,6 @@ class Kegiatan extends CI_Controller
     public function crud($id = null)
     {
         $this->form_validation->set_rules('mitra_id', 'mitra_id', 'required', array('required' => '*Harus diisi'));
-        $this->form_validation->set_rules('jenis_kegiatan_id', 'jenis_kegiatan_id', 'required', array('required' => '*Harus diisi'));
-        $this->form_validation->set_rules('nama_singkat', 'nama_singkat', 'required', array('required' => '*Harus diisi'));
-        $this->form_validation->set_rules('nama_lengkap', 'nama_lengkap', 'required', array('required' => '*Harus diisi'));
-        $this->form_validation->set_rules('tujuan_dan_manfaat[]', 'tujuan_dan_manfaat', 'required', array('required' => '*Harus diisi'));
-        $this->form_validation->set_rules('sasaran[]', 'sasaran', 'required', array('required' => '*Harus diisi'));
-        $this->form_validation->set_rules('status_tahapan', 'status_tahapan', 'required', array('required' => '*Harus diisi'));
-        $this->form_validation->set_rules('persentase_progres', 'persentase_progres', 'required', array('required' => '*Harus diisi'));
         if ($this->form_validation->run() == FALSE) {
             if ($this->input->post('id')) $id = $this->input->post('id');
             $this->viewcrud($id);
@@ -114,6 +111,7 @@ class Kegiatan extends CI_Controller
             'mitra_id' => $this->input->post('mitra_id'),
             'jenis_kegiatan_id' => $this->input->post('jenis_kegiatan_id'),
             'nama_singkat' => $this->input->post('nama_singkat'),
+            'nama_lengkap' => $this->input->post('nama_lengkap'),
             'deskripsi' => $this->input->post('deskripsi'),
             'tujuan_dan_manfaat' => json_encode($this->input->post('tujuan_dan_manfaat')),
             'pihak_yang_terlibat' => $this->input->post('pihak_yang_terlibat'),
@@ -126,6 +124,8 @@ class Kegiatan extends CI_Controller
             'keunikan' => $this->input->post('keunikan'),
             'potensi' => $this->input->post('potensi'),
             'strategi_menjaga_keberlangsungan' => $this->input->post('strategi_menjaga_keberlangsungan'),
+            'url' => $this->input->post('url'),
+            'status_publikasi' => $this->input->post('status_publikasi') ?? 0,
             'indikator_keberhasilan' => $this->input->post('indikator_keberhasilan')
         );
         if ($uploadfoto['status'] == true) {

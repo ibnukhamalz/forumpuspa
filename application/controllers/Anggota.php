@@ -11,6 +11,9 @@ class Anggota extends CI_Controller
         $this->load->model('model_anggota', 'manggota');
         $this->load->model('model_login', 'mlogin');
         $this->load->model('model_enumeration', 'menum');
+        if ($this->session->user_id == "") {
+            redirect('login');
+        }
     }
 
     public function index($status = null, $user_id = null)

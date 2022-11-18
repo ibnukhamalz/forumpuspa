@@ -1,7 +1,7 @@
 <?php
 class Model_kegiatan extends CI_Model
 {
-    public function getData($where = array())
+    public function getData($where)
     {
         if (!empty($where)) {
             $this->db->where($where);
@@ -9,28 +9,30 @@ class Model_kegiatan extends CI_Model
         $data = $this->db
             ->select(
                 "kegiatan.*, 
-                a.keterangan as tahapan,
-                a.value as status_tahapan"
-            )
-            ->join("mitra", "mitra.id = kegiatan.mitra_id", "inner")
-            ->join("enumeration as a", "a.id = kegiatan.status_tahapan", "inner")
-            ->get("kegiatan")->result();
-        return $data;
-    }
-    public function getDataNew($tahap = null)
-    {
-        if ($tahap != null) {
-            $this->db->where("e1.keterangan", $tahap);
-        }
-        $data = $this->db
-            ->select(
-                "kegiatan.*, 
-                m1.nama_lengkap as namaforum, 
                 e1.keterangan as tahapan,
                 e1.value as status_tahapan"
             )
             ->join("mitra as m1", "m1.id = kegiatan.mitra_id", "inner")
             ->join("enumeration as e1", "e1.id = kegiatan.status_tahapan", "inner")
+            ->get("kegiatan")->result();
+        return $data;
+    }
+    public function getDataNew($where = null)
+    {
+        if (!empty($where)) {
+            $this->db->where($where);
+        }
+        $data = $this->db
+            ->select(
+                "kegiatan.*, 
+                m1.nama_lengkap as namaforum, 
+                e2.value as level, 
+                e1.keterangan as tahapan,
+                e1.value as status_tahapan"
+            )
+            ->join("mitra as m1", "m1.id = kegiatan.mitra_id", "inner")
+            ->join("enumeration as e1", "e1.id = kegiatan.status_tahapan", "inner")
+            ->join("enumeration as e2", "e2.id = m1.jenis_mitra", "inner")
             ->order_by("created_at", "DESC")
             ->limit(3)
             ->get("kegiatan")->result();
@@ -42,13 +44,15 @@ class Model_kegiatan extends CI_Model
         $data = $this->db
             ->select(
                 "kegiatan.*,
-                mitra.logo as logoforum, 
+                users.logo as logoforum, 
                 mitra.nama_lengkap as namaforum, 
                 e1.keterangan as tahapan,
                 "
             )
             ->join("mitra", "mitra.id = kegiatan.mitra_id", "inner")
+            ->join("roles", "roles.mitra_id = mitra.id", "inner")
             ->join("enumeration as e1", "e1.id = kegiatan.status_tahapan", "inner")
+            ->join("users", "users.id = roles.user_id", "inner")
             ->get_where("kegiatan", ["kegiatan.id" => $id])->row();
         return $data;
     }
@@ -79,10 +83,12 @@ class Model_kegiatan extends CI_Model
             ->select(
                 "komentar.*,
                 mitra.id as mitra_id,
+                enumeration.keterangan as role_id,
                 mitra.nama_lengkap as namaforum"
             )
             ->join("roles", "roles.user_id = komentar.user_id", "inner")
             ->join("mitra", "mitra.id = roles.mitra_id", "inner")
+            ->join("enumeration", "enumeration.id = roles.role_id", "inner")
             ->order_by('komentar.created_at', "ASC")
             ->get_where("komentar", $where);
         return $data->result();
